@@ -2,30 +2,54 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Kayla Leung Portfolio</title>
+    <title>Kayla Leung</title>
+
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
   </head>
   <body>
-    <div id="content">
-      <h1>Kayla Leung</h1>
-      <p>This is my portfolio.</p>
-      <img src="images/kaylaleung.jpeg"/>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
-      <p>Click here to visit my blog:</p>
-      <div id="greeting-container"></div>
-      <button onclick="parent.open('https://www.itspossiblelab.com/')">Blog</button>
-      <div id="greeting-container"></div>
-      <p>Click here to visit my LinkedIn Profile:</p>
-      <div id="greeting-container"></div>
-      <button onclick="parent.open('https://www.linkedin.com/in/kaylaleung/')">LinkedIn</button>
-      <div id="greeting-container"></div>
-      <p>Click here to visit my GitHub:</p>
-      <div id="greeting-container"></div>
-      <button onclick="parent.open('https://www.github.com/kaylaleung')">GitHub</button>
 
+  <!-- Left Side Bar -->
+  <div class="wrapper">
+    <div class="sidebar">
+
+        <div class="avatar">
+          <img src="images/kaylaleung.jpeg">
+        </div>
+
+        <div class="role">
+          <h2>Kayla Leung</h2>
+          <h4>Software Engineering Intern</h4>
+        </div>
+
+        <div class="social_media">
+          <ul>
+            <li><a href="https://www.facebook.com/kaylayleung" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="https://www.instagram.com/kaylaleung/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/kaylaleung/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://github.com/kaylaleung" target="_blank"><i class="fab fa-github"></i></a></li>
+          </ul>
+        </div>
+
+        <div class="menu">
+          <ul>
+              <li><a href="#home" class="active"><i class="fas fa-home"></i>Home</a></li>
+              <li><a href="#education"><i class="fas fa-user"></i>Education</a></li>
+              <li><a href="#experience"><i class="fas fa-address-card"></i>Experience</a></li>
+              <li><a href="#projects"><i class="fas fa-project-diagram"></i>Projects</a></li>
+              <li><a href="#blog"><i class="fas fa-blog"></i>Blog</a></li>
+          </ul>
+        </div>
     </div>
+
+    <div class="main_content"></div>
+
+  </div>
+
   </body>
 </html>
