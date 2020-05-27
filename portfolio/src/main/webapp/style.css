@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -9,18 +9,13 @@
   font-family: 'Raleway', sans-serif;
 }
 
-body{
+body {
    background-color: #f3f5f9;
-}
-
-.wrapper{
-  display: flex;
-  position: relative;
 }
 
 /* -------------- Side Bar --------------*/
 
-.wrapper .sidebar{
+.wrapper .sidebar {
   width: 280px;
   height: 100%;
   background: #6767b5;
@@ -47,14 +42,14 @@ body{
 
 /* -------------- Side Bar Headings --------------*/
 
-.wrapper .sidebar h2{
+.wrapper .sidebar h2 {
   color: #fff;
   /* text-transform: uppercase; */
   text-align: center;
   margin-bottom: 30px;
 }
 
-.wrapper .sidebar h4{
+.wrapper .sidebar h4 {
   color: #fff;
   text-align: center;
   margin-bottom: 30px;
@@ -62,28 +57,28 @@ body{
 
 /* -------------- Side Bar Menu --------------*/
 
-.wrapper .sidebar .menu ul li{
+.wrapper .sidebar .menu ul li {
   padding: 15px;
   border-bottom: 1px solid #bdb8d7;
   border-bottom: 1px solid rgba(0,0,0,0.05);
   border-top: 1px solid rgba(255,255,255,0.05);
 }
 
-.wrapper .sidebar .menu ul li a{
+.wrapper .sidebar .menu ul li a {
   color: #bdb8d7;
   display: block;
   padding-left: 30px;
 }
 
-.wrapper .sidebar .menu ul li a .fas{
+.wrapper .sidebar .menu ul li a .fas {
   width: 25px;
 }
 
-.wrapper .sidebar .menu ul li:hover{
+.wrapper .sidebar .menu ul li:hover {
   background-color: #40317d;
 }
 
-.wrapper .sidebar .menu ul li:hover a{
+.wrapper .sidebar .menu ul li:hover a {
   color: #fff;
 }
 
@@ -104,11 +99,11 @@ body{
   display: flex;
 }
 
-.wrapper .sidebar .social_media li{
+.wrapper .sidebar .social_media li {
     margin: 0 2px;
 }
 
-.wrapper .sidebar .social_media a{
+.wrapper .sidebar .social_media a {
   display: block;
   width: 30px;
   background: #fff;
@@ -128,22 +123,22 @@ body{
     line-height: 30px;
 }
 
-.wrapper .sidebar .social_media a:hover{
+.wrapper .sidebar .social_media a:hover {
   transform: rotate(0deg) skew(0deg) translate(0, -4px);
 }
 
-.wrapper .sidebar .social_media li:nth-child(1) a:hover .fab{
+.wrapper .sidebar .social_media li:nth-child(1) a:hover .fab {
   color: #1d79f2;
 }
 
-.wrapper .sidebar .social_media li:nth-child(2) a:hover .fab{
+.wrapper .sidebar .social_media li:nth-child(2) a:hover .fab {
   color: #dd2a7b;
 }
 
-.wrapper .sidebar .social_media li:nth-child(3) a:hover .fab{
+.wrapper .sidebar .social_media li:nth-child(3) a:hover .fab {
   color: #0e76a8;
 }
 
-.wrapper .sidebar .social_media li:nth-child(4) a:hover .fab{
+.wrapper .sidebar .social_media li:nth-child(4) a:hover .fab {
   color: #000000;
 }
