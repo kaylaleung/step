@@ -268,9 +268,8 @@ section .info h4{
   border: none;
   color: #FFFFFF;
   text-align: center;
-  font-size: 28px;
-  padding: 20px;
-  width: 200px;
+  font-size: 3vw;
+  padding: 15px;
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
