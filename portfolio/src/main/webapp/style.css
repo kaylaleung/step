@@ -205,13 +205,6 @@ input[type="checkbox"]:checked ~ .menu section {
   padding-right: 0px;
 }
 
-section .header{
-  padding: 1px;
-  background: #fff;
-  color: #717171;
-  border-bottom: 1px solid #e0e4e8;
-}
-
 section .title{
   padding: 10px;
   padding-left: 10px;
@@ -234,4 +227,51 @@ section .info h4{
   padding-left: 15px;
   color: #717171;
   line-height: 25px;
+}
+
+.banner {
+  position: relative;
+  width: 100%;
+  min-height: 50vh;
+  background-color: #fff;
+  background-size: cover;
+  background-blend-mode: lighten;
+}
+
+/* -------------- Landing Page --------------*/
+
+.landing {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: url(images/cherry.jpg);
+  background-size: cover;
+  background-blend-mode: lighten;
+}
+
+.landing .content {
+  position: relative;
+  top: 500px;
+  left: 100px;
+  text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.8);
+}
+.landing .content h2 {
+  font-size: 5vw;
+  text-align: left;
+  color: #fff;
+  padding-bottom: 20px;
+}
+
+.landing .content .button {
+  border-radius: 20px;
+  background-color: #a1a1cc;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
 }
