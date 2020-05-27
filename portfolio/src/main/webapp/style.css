@@ -25,16 +25,15 @@ body {
 
 /* -------------- Side Bar Avatar --------------*/
 
-.wrapper .sidebar .avatar {
-    overflow: hidden;
-    margin: 55px;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    border-radius: 50%;
-}
-.wrapper .sidebar .avatar img {
+.wrapper .sidebar img {
+  display: block;
+  overflow: hidden;
+  margin: 50px auto 30px auto;
   width: 100%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;    
+  border-radius: 50%;
 }
 
 /* -------------- Side Bar Headings --------------*/
@@ -55,9 +54,8 @@ body {
 
 .wrapper .sidebar .menu ul li {
   padding: 15px;
-  border-bottom: 1px solid #bdb8d7;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
   border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
 .wrapper .sidebar .menu ul li a {
