@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+html {
+  scroll-behavior: smooth
+}
 
 * {
   margin: 0;
@@ -11,21 +13,72 @@
 
 body {
    background-color: #f3f5f9;
+   overflow-x: hidden;
+}
+
+/* -------------- Toggle VIew of Side Bar --------------*/
+
+input[type="checkbox"] {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  width: 50px;
+  height: 50px;
+  z-index: 100000;
+  cursor: pointer;  
+  opacity: 0;
+}
+
+.icon {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  width: 50px;
+  height: 50px;
+  z-index: 100001;
+  background: #6767b5;
+  pointer-events: none;
+}
+
+.icon:before {
+  content: 'close';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom:0;
+  color: #fff;
+  text-align: center;
+  line-height: 50px;  
+}
+
+input[type="checkbox"]:checked ~ .icon:before {
+  content: 'open'
 }
 
 /* -------------- Side Bar --------------*/
 
-.wrapper .sidebar {
-  width: 280px;
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 30px 0px;
+  box-sizing: border-box;
+  width: 300px;
   height: 100%;
   background: #6767b5;
-  padding: 30px 0px;
-  position: fixed;
+  transition: 0.5s;
+  z-index: 1000000;
+}
+
+input[type="checkbox"]:checked ~ .sidebar {
+  left: -300px;
 }
 
 /* -------------- Side Bar Avatar --------------*/
 
-.wrapper .sidebar img {
+.sidebar img {
   display: block;
   overflow: hidden;
   margin: 50px auto 30px auto;
@@ -38,13 +91,13 @@ body {
 
 /* -------------- Side Bar Headings --------------*/
 
-.wrapper .sidebar h2 {
+.sidebar h2 {
   color: #fff;
   text-align: center;
   margin-bottom: 30px;
 }
 
-.wrapper .sidebar h4 {
+.sidebar h4 {
   color: #fff;
   text-align: center;
   margin-bottom: 30px;
@@ -52,37 +105,37 @@ body {
 
 /* -------------- Side Bar Menu --------------*/
 
-.wrapper .sidebar .menu ul li {
+.sidebar .menu ul li {
   padding: 15px;
   border-top: 1px solid rgba(255,255,255,0.05);
   border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
-.wrapper .sidebar .menu ul li a {
+.sidebar .menu ul li a {
   color: #bdb8d7;
   display: block;
   padding-left: 30px;
 }
 
-.wrapper .sidebar .menu ul li a .fas {
+.sidebar .menu ul li a .fas {
   width: 25px;
 }
 
-.wrapper .sidebar .menu ul li:hover {
+.sidebar .menu ul li:hover {
   background-color: #40317d;
 }
 
-.wrapper .sidebar .menu ul li:hover a {
+.sidebar .menu ul li:hover a {
   color: #fff;
 }
 
-.wrapper .sidebar .menu ul li .active {
+.sidebar .menu ul li .active {
   color: white;
 }
 
 /* -------------- Social Media --------------*/
 
-.wrapper .sidebar .social_media ul {
+.sidebar .social_media ul {
   list-style: none;
   margin: 0 10px;
   position: relative;
@@ -93,11 +146,11 @@ body {
   display: flex;
 }
 
-.wrapper .sidebar .social_media li {
+.sidebar .social_media li {
     margin: 0 2px;
 }
 
-.wrapper .sidebar .social_media a {
+.sidebar .social_media a {
   display: block;
   width: 30px;
   background: #fff;
@@ -112,27 +165,73 @@ body {
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
-.wrapper .sidebar .social_media .fab {
+.sidebar .social_media .fab {
     font-size: 18px;
     line-height: 30px;
 }
 
-.wrapper .sidebar .social_media a:hover {
+.sidebar .social_media a:hover {
   transform: rotate(0deg) skew(0deg) translate(0, -4px);
 }
 
-.wrapper .sidebar .social_media li:nth-child(1) a:hover .fab {
+.sidebar .social_media li:nth-child(1) a:hover .fab {
   color: #1d79f2;
 }
 
-.wrapper .sidebar .social_media li:nth-child(2) a:hover .fab {
+.sidebar .social_media li:nth-child(2) a:hover .fab {
   color: #dd2a7b;
 }
 
-.wrapper .sidebar .social_media li:nth-child(3) a:hover .fab {
+.sidebar .social_media li:nth-child(3) a:hover .fab {
   color: #0e76a8;
 }
 
-.wrapper .sidebar .social_media li:nth-child(4) a:hover .fab {
+.sidebar .social_media li:nth-child(4) a:hover .fab {
   color: #000000;
+}
+
+/* -------------- Main Section --------------*/
+
+section {
+  position: relative;
+  left: 300px;
+  padding: 20px 300px 20px 0px;
+  box-sizing: border-box;
+  transition: 0.5s;
+}
+
+input[type="checkbox"]:checked ~ .menu section {
+  left: 0;
+  padding-right: 0px;
+}
+
+section .header{
+  padding: 1px;
+  background: #fff;
+  color: #717171;
+  border-bottom: 1px solid #e0e4e8;
+}
+
+section .title{
+  padding: 10px;
+  padding-left: 10px;
+  color: #000000;
+  border-bottom: 1px solid #e0e4e8;
+}
+
+section .info{
+  margin: 10px 80px 10px 80px;
+  color: #717171;
+  line-height: 25px;
+}
+
+section .info p{
+  padding: 20px;
+  color: #717171;
+  line-height: 25px;
+}
+section .info h4{
+  padding-left: 15px;
+  color: #717171;
+  line-height: 25px;
 }
