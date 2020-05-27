@@ -26,11 +26,8 @@ body {
 /* -------------- Side Bar Avatar --------------*/
 
 .wrapper .sidebar .avatar {
-    position: relative;
     overflow: hidden;
     margin: 55px;
-    width: 170px;
-    height: 170px;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;
@@ -44,7 +41,6 @@ body {
 
 .wrapper .sidebar h2 {
   color: #fff;
-  /* text-transform: uppercase; */
   text-align: center;
   margin-bottom: 30px;
 }
