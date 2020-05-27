@@ -252,7 +252,7 @@ section .info h4{
 
 .landing .content {
   position: relative;
-  top: 500px;
+  top: 30vw;
   left: 100px;
   text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.8);
 }
@@ -269,7 +269,7 @@ section .info h4{
   border: none;
   color: #FFFFFF;
   text-align: center;
-  font-size: 3vw;
+  font-size: 2vw;
   padding: 15px;
   transition: all 0.5s;
   cursor: pointer;
