@@ -106,12 +106,12 @@ input[type="checkbox"]:checked ~ .sidebar {
 /* -------------- Side Bar Menu --------------*/
 
 .sidebar .menu ul li {
-  padding: 15px;
   border-top: 1px solid rgba(255,255,255,0.05);
   border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
 .sidebar .menu ul li a {
+  padding: 15px;
   color: #bdb8d7;
   display: block;
   padding-left: 30px;
@@ -129,7 +129,8 @@ input[type="checkbox"]:checked ~ .sidebar {
   color: #fff;
 }
 
-.sidebar .menu ul li .active {
+.sidebar .menu ul li a.active{
+  background: #00b5de;
   color: white;
 }
 
