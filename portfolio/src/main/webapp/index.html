@@ -2,18 +2,104 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Kayla Leung Portfolio</title>
+    <title>Kayla Leung</title>
+
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="font.css">
+
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+
   </head>
   <body>
-    <div id="content">
-      <h1>Kayla Leung</h1>
-      <p>This is my portfolio.</p>
-      <img src="images/kaylaleung.jpeg"/>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+
+    <!-- Toggle Side View -->
+    <input type="checkbox" name="">
+    <span class="icon"></span>
+    
+    <!-- Left Side Bar -->
+    <div class="sidebar">
+
+        <img src="images/kaylaleung.jpeg" width="175" height="175" alt="Photo of Kayla Leung">
+
+        <div>
+          <h2>Kayla Leung</h2>
+          <h4>Software Engineering Intern</h4>
+        </div>
+
+        <div class="social_media">
+          <ul>
+            <li><a href="//www.facebook.com/kaylayleung"><i class="fab fa-facebook-f" alt="facebook icon"></i></a></li>
+            <li><a href="//www.instagram.com/kaylaleung/"><i class="fab fa-instagram" alt="instagram icon"></i></a></li>
+            <li><a href="//www.linkedin.com/in/kaylaleung/"><i class="fab fa-linkedin" alt="linkedin icon"></i></a></li>
+            <li><a href="//www.github.com/kaylaleung"><i class="fab fa-github" alt="github icon"></i></a></li>
+          </ul>
+        </div>
+
+        <div class="menu">
+          <ul>
+              <li><a href="#home" class="active"><i class="fas fa-home"></i>Home</a></li>
+              <li><a href="#education"><i class="fas fa-user"></i>Education</a></li>
+              <li><a href="#experience"><i class="fas fa-address-card"></i>Experience</a></li>
+              <li><a href="#projects"><i class="fas fa-project-diagram"></i>Projects</a></li>
+              <li><a href="#blog"><i class="fas fa-blog"></i>Blog</a></li>
+          </ul>
+        </div>
     </div>
+
+    <!-- Main Content Section -->
+    <div id="home" class="menu">
+      <section>
+          <div class="info">
+            <div class="title"><h2>About Me</h2></div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+        </div> 
+      </section>
+    </div>
+
+    <div id="education" class="menu">
+      <section>
+          <div class="info">
+            <div class="title"><h2>Education</h2></div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+        </div> 
+      </section>
+    </div>
+
+    <div id="experience" class="menu">
+      <section>
+          <div class="info">
+            <div class="title"><h2>Experience</h2></div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+        </div> 
+      </section>
+      </div>
+
+     <div id="projects" class="menu">
+      <section>
+          <div class="info">
+            <div class="title"><h2>Projects</h2></div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+        </div> 
+      </section>
+      </div>
+
+    <div id="blog" class="menu">
+      <section>
+          <div class="info">
+            <div class="title"><h2>Blog</h2></div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+        </div> 
+      </section>
+    </div>
+
+  </div>
+
   </body>
 </html>
