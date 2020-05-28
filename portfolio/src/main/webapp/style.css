@@ -269,6 +269,17 @@ section .info h4 span {
   float:right;
 }
 
+section .courses {
+  column-count: 2;
+  column-width: 100px;
+  padding: 20px;
+  color: #474646;
+}
+section .courses ul li span {
+  color: #474646;
+  font-weight: bold;
+}
+
 /* -------------- Landing Page --------------*/
 
 .landing {
