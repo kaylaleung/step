@@ -14,5 +14,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
       else {
         tab.target.classList.add("active");
       }
-	}
+  }
 });
+
