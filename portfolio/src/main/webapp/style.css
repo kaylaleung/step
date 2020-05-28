@@ -205,32 +205,32 @@ input[type="checkbox"]:checked ~ .menu section {
   padding-right: 0px;
 }
 
-section .header{
+section .header {
   padding: 1px;
   background: #fff;
   color: #717171;
   border-bottom: 1px solid #e0e4e8;
 }
 
-section .title{
+section .title {
   padding: 10px;
   padding-left: 10px;
   color: #000000;
   border-bottom: 1px solid #e0e4e8;
 }
 
-section .info{
+section .info {
   margin: 10px 80px 10px 80px;
   color: #717171;
   line-height: 25px;
 }
 
-section .info p{
+section .info p {
   padding: 20px;
   color: #717171;
   line-height: 25px;
 }
-section .info h4{
+section .info h4 {
   padding-left: 15px;
   color: #717171;
   line-height: 25px;
