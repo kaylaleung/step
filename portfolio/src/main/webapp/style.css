@@ -253,9 +253,20 @@ section .info h4 {
 .banner {
   position: relative;
   width: 100%;
-  min-height: 50vh;
+  min-height: 20vh;
   background-color: #fff;
   background-size: cover;
+}
+
+section .info h3 span {
+  font-size:smaller;
+  float:right;
+}
+
+section .info h4 span {
+  font-size:smaller;
+  font-style:italic;
+  float:right;
 }
 
 /* -------------- Landing Page --------------*/
