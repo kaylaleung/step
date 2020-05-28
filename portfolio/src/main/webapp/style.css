@@ -82,7 +82,6 @@ input[type="checkbox"]:checked ~ .sidebar {
   display: block;
   overflow: hidden;
   margin: 50px auto 30px auto;
-  width: 100%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;    
