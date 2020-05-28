@@ -256,7 +256,6 @@ section .info h4 {
   min-height: 50vh;
   background-color: #fff;
   background-size: cover;
-  background-blend-mode: lighten;
 }
 
 /* -------------- Landing Page --------------*/
@@ -267,7 +266,6 @@ section .info h4 {
   min-height: 100vh;
   background: url(images/cherry.jpg);
   background-size: cover;
-  background-blend-mode: lighten;
 }
 
 .landing .content {
