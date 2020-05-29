@@ -104,38 +104,37 @@ input[type="checkbox"]:checked ~ .sidebar {
 
 /* -------------- Side Bar Menu --------------*/
 
-.sidebar .menu ul li {
+.tab {
   border-top: 1px solid rgba(255,255,255,0.05);
   border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
-.sidebar .menu ul li a {
+.tab a {
   padding: 15px;
   color: #bdb8d7;
   display: block;
   padding-left: 30px;
 }
 
-.sidebar .menu ul li a .fas {
+.tab a .fas {
   width: 25px;
 }
-
-.sidebar .menu ul li:hover {
+.tab:hover {
   background-color: #40317d;
 }
 
-.sidebar .menu ul li:hover a {
+.tab:hover a {
   color: #fff;
 }
 
-.sidebar .menu ul li a.active{
+.tab a.active{
   background: #00b5de;
   color: white;
 }
 
 /* -------------- Social Media --------------*/
 
-.sidebar .social_media ul {
+.social_media ul {
   list-style: none;
   margin: 0 10px;
   position: relative;
@@ -146,11 +145,11 @@ input[type="checkbox"]:checked ~ .sidebar {
   display: flex;
 }
 
-.sidebar .social_media li {
+.social_media li {
     margin: 0 2px;
 }
 
-.sidebar .social_media a {
+.social_media a {
   display: block;
   width: 30px;
   background: #fff;
@@ -165,28 +164,28 @@ input[type="checkbox"]:checked ~ .sidebar {
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
-.sidebar .social_media .fab {
+.social_media .fab {
     font-size: 18px;
     line-height: 30px;
 }
 
-.sidebar .social_media a:hover {
+.social_media a:hover {
   transform: rotate(0deg) skew(0deg) translate(0, -4px);
 }
 
-.sidebar .social_media li:nth-child(1) a:hover .fab {
+.social_media li:nth-child(1) a:hover .fab {
   color: #1d79f2;
 }
 
-.sidebar .social_media li:nth-child(2) a:hover .fab {
+.social_media li:nth-child(2) a:hover .fab {
   color: #dd2a7b;
 }
 
-.sidebar .social_media li:nth-child(3) a:hover .fab {
+.social_media li:nth-child(3) a:hover .fab {
   color: #0e76a8;
 }
 
-.sidebar .social_media li:nth-child(4) a:hover .fab {
+.social_media li:nth-child(4) a:hover .fab {
   color: #000000;
 }
 
@@ -258,12 +257,12 @@ section .info h4 {
   background-size: cover;
 }
 
-section .info h3 .align-right-h3 {
+.align-right-h3 {
   font-size:smaller;
   float:right;
 }
 
-section .info h4 .align-right-h4 {
+.align-right-h4 {
   font-size:smaller;
   font-style:italic;
   float:right;
@@ -275,7 +274,7 @@ section .courses {
   padding: 20px;
   color: #474646;
 }
-section .courses ul li span {
+.courseNum {
   color: #474646;
   font-weight: bold;
 }
@@ -319,17 +318,16 @@ section .courses ul li span {
 /* -------------- Project Hover Cards --------------*/
 
 .container {
-  position: relative;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items:center;
   flex-wrap: wrap;
-  padding: 30px;
+  padding: 40px 30px 30px 30px;
 }
 
-.container .card {
-  max-width: 300px;
+.card {
+  max-width: 400px;
   height: 300px;
   position: relative;
   background: #fff;
@@ -342,21 +340,18 @@ section .courses ul li span {
   border-radius: 5px;
 }
 
-.container .card:hover {
-  height: 550px;
-}
-.container .card .imgBx {
-  position: relative;
-  top: -40px;
-  align-content: center;
+.card:hover {
+  height: 450px;
 }
 
-.container .card .imgBx img {
+.card img {
+  position: relative;
+  top: -40px;
   width:100%;
   object-fit: cover;
 }
 
-.container .card:hover .content p {
+.card:hover .content p {
   position: relative;
   text-align: center;
   color: #111;
@@ -365,7 +360,7 @@ section .courses ul li span {
   transition: 1s ease-in-out;
 }
 
-.container .card .content p {
+.card .content p {
   position: relative;
   text-align: center;
   color: #111;
@@ -373,8 +368,9 @@ section .courses ul li span {
   transition-delay: 0.2s;
 }
 
-.container .card .content h2 {
+.card .content h3 {
   top: -40px;
   text-align: center;
+  font-size: x-large;
   color: #111;
 }
