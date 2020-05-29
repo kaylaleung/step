@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="font.css">
 
+    <script src="script.js"></script>
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -49,53 +50,146 @@
     </div>
 
     <!-- Main Content Section -->
+
     <div id="home" class="menu">
-      <section>
-          <div class="info">
-            <div class="title"><h2>About Me</h2></div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
+      <section id="home" class="landing">
+        <div class="content"> 
+          <h1>Hi there. <br> I'm Kayla Leung </h1>
+          <a class="button" href="#aboutme">About Me</a>
+        </div>
+      </section>
+    </div>
+
+    <div id="aboutme" class="menu">
+      <section class="banner">
+        <div class="info">
+          
+          <div class ="title"><h2>About Me</h2></div>
+          <div>
+            <img src="images/dolby.jpg" width="200" height="250" alt="Photo of Kayla in Museum">
+            <img src="images/ada.png" width="200" height="250" alt="Photo of Kayla in Museum">
+          </div>
+          <p>
+            Hi there! I’m Kayla. I’m a 20 year old rising Junior at Carnegie Mellon University originally from East Brunswick, New Jersey. I'm majoring in Computer Science with an additional major in Psychology and a minor in Human-Computer Interaction.  I’m an aspiring software engineer interested in working on human centered technology at the intersection of Computer Science and Psychology.
+          </p>
+          <p> 
+            In my free time, I enjoy photography, writing on my blog with updates about my life as a student, and reading various psychology related books!
+          </p>
+            
         </div> 
       </section>
     </div>
 
     <div id="education" class="menu">
-      <section>
-          <div class="info">
-            <div class="title"><h2>Education</h2></div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
+      <section class="banner">
+        <div class="info">
+          <h2>Education</h2>
+
+          <h3>
+            Carnegie Mellon University 
+            <div class="align-right-h3">Expected Graduation: May 2020 </div>
+          </h3>
+
+          <h4>
+            <div class="align-right-h4">Pittsburgh, PA</div> 
+            B.S. Computer Science, Psychology
+          </h4>
+
+          <h3>
+            Notable Coursework 
+          </h3>
+            
+          <div class="courses">
+            <ul>
+              <li><span>15-440</span> Distributed Systems</li>
+              <li><span>15-213</span> Introduction to Computer Systems</li>
+              <li><span>05-391</span> Designing Human Centered Software</li>
+              <br>
+              <li><span>10-315</span> Introduction to Machine Learning</li>
+              <li><span>15-210</span> Parallel and Sequential Data Strctures and Algorithms</li>
+              <li><span>15-251</span> Great Theoretical Ideas in Computer Science</li>
+            </ul>
+          </div>
+
         </div> 
       </section>
     </div>
 
     <div id="experience" class="menu">
-      <section>
-          <div class="info">
-            <div class="title"><h2>Experience</h2></div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-        </div> 
-      </section>
-      </div>
+      <section class="banner">
+        <div class="info">
+          <h2>Experience</h2>
 
-     <div id="projects" class="menu">
-      <section>
-          <div class="info">
-            <div class="title"><h2>Projects</h2></div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
+          <h3>
+            Teaching Assistant 
+            <div class="align-right-h3">July 2019 – Present</div>
+          </h3>
+          
+          <h4>
+            <div class="align-right-h4">Pittsburgh, PA</div> 
+            Carnegie Mellon 15-122 Principles of Imperative Computation
+          </h4>
+            
+          <p>Teach weekly labs, recitations, and review sessions to 60+ students, hold office hours to help students with programming assignments and conceptual questions on algorithms, data structures, and complexity
+          </p>
+          
+          <h3>
+            Software Engineering Intern 
+            <div class="align-right-h3">May – Aug 2019</div>
+          </h3>
+            
+          <h4>
+            <div class="align-right-h4">Pittsburgh, PA</div> 
+            Biomotivate
+          </h4>
+            
+          <p>
+            Develop backend using Firebase Cloud Functions to call Fitbit/various health data providers’ REST APIs to retrieve data and save them to Firestore database for ML training used by addiction treatment centers
+          </p>
+          
+          <p>
+            Implement cross platform mobile app using Ionic, Firebase, and AngularFire to survey patient progress and provide administrator access to patient data saved in Cloud Firestore database  
+          </p>
+          
+             
+          <h3>
+            Research Assistant 
+            <div class="align-right-h3">Jan – May 2019</div>
+          </h3>
+          
+          <h4>
+            <div class="align-right-h4">Pittsburgh, PA</div> 
+              Carnegie Mellon CREATE Lab
+          </h4>
+             
+          <p>Design front end interface for Android mobile app, MindfulNest, teaching pre-K students emotion control and self-calming with interactive breathing and stress relieving exercises through the app interface
+          </p>
+        
         </div> 
       </section>
-      </div>
+    </div>
+
+    <div id="projects" class="menu">
+      <section class="banner">
+        <div class="info">     
+          <h2>Projects</h2>
+
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+
+        </div> 
+      </section>
+    </div>
 
     <div id="blog" class="menu">
-      <section>
+      <section class="banner">
           <div class="info">
-            <div class="title"><h2>Blog</h2></div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-        </div> 
+            <h2>Blog</h2>
+            
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+
+          </div> 
       </section>
     </div>
 

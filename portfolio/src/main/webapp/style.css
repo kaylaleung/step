@@ -105,12 +105,12 @@ input[type="checkbox"]:checked ~ .sidebar {
 /* -------------- Side Bar Menu --------------*/
 
 .sidebar .menu ul li {
-  padding: 15px;
   border-top: 1px solid rgba(255,255,255,0.05);
   border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
 .sidebar .menu ul li a {
+  padding: 15px;
   color: #bdb8d7;
   display: block;
   padding-left: 30px;
@@ -128,7 +128,8 @@ input[type="checkbox"]:checked ~ .sidebar {
   color: #fff;
 }
 
-.sidebar .menu ul li .active {
+.sidebar .menu ul li a.active{
+  background: #00b5de;
   color: white;
 }
 
@@ -211,10 +212,10 @@ section .header {
   border-bottom: 1px solid #e0e4e8;
 }
 
-section .title {
+section .info h2 {
   padding: 10px;
   padding-left: 10px;
-  color: #000000;
+  color: #5f5aa8;
   border-bottom: 1px solid #e0e4e8;
 }
 
@@ -224,13 +225,94 @@ section .info {
   line-height: 25px;
 }
 
+section .info h3 {
+  padding: 20px 10px 10px 10px;
+  color: #000;
+}
+
 section .info p {
   padding: 20px;
   color: #717171;
   line-height: 25px;
 }
+
 section .info h4 {
-  padding-left: 15px;
-  color: #717171;
-  line-height: 25px;
+  padding: 10px 10px 10px 20px;
+  color:rgb(71, 71, 71)
 }
+
+#aboutme img {
+  position: relative;
+  margin: 10px 0px 10px 20px;
+  object-fit: cover;
+  float:right;
+  transition: 0.5s;
+  z-index: 1000001;
+}
+
+.banner {
+  position: relative;
+  width: 100%;
+  min-height: 20vh;
+  background-color: #fff;
+  background-size: cover;
+}
+
+section .info h3 .align-right-h3 {
+  font-size:smaller;
+  float:right;
+}
+
+section .info h4 .align-right-h4 {
+  font-size:smaller;
+  font-style:italic;
+  float:right;
+}
+
+section .courses {
+  column-count: 2;
+  column-width: 100px;
+  padding: 20px;
+  color: #474646;
+}
+section .courses ul li span {
+  color: #474646;
+  font-weight: bold;
+}
+
+/* -------------- Landing Page --------------*/
+
+.landing {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: url(images/cherry.jpg);
+  background-size: cover;
+}
+
+.landing .content {
+  position: relative;
+  top: 30vw;
+  left: 100px;
+  text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.8);
+}
+.landing .content h1 {
+  font-size: 5vw;
+  text-align: left;
+  color: #fff;
+  padding-bottom: 20px;
+}
+
+.landing .content .button {
+  border-radius: 20px;
+  background-color: #a1a1cc;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 2vw;
+  padding: 15px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
