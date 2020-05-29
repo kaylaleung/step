@@ -212,10 +212,10 @@ section .header {
   border-bottom: 1px solid #e0e4e8;
 }
 
-section .title {
+section .info h2 {
   padding: 10px;
   padding-left: 10px;
-  color: #000000;
+  color: #5f5aa8;
   border-bottom: 1px solid #e0e4e8;
 }
 
@@ -258,12 +258,12 @@ section .info h4 {
   background-size: cover;
 }
 
-section .info h3 span {
+section .info h3 .align-right-h3 {
   font-size:smaller;
   float:right;
 }
 
-section .info h4 span {
+section .info h4 .align-right-h4 {
   font-size:smaller;
   font-style:italic;
   float:right;
@@ -296,7 +296,7 @@ section .courses ul li span {
   left: 100px;
   text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.8);
 }
-.landing .content h2 {
+.landing .content h1 {
   font-size: 5vw;
   text-align: left;
   color: #fff;

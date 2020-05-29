@@ -1,10 +1,10 @@
 window.addEventListener('DOMContentLoaded', (event) => {
 
-  var element = document.getElementsByClassName("menu")[0];
+  let element = document.getElementsByClassName("menu")[0];
   element.addEventListener("click", toggleActiveSection);
 
   function toggleActiveSection(tab) {
-      var elems = document.querySelector(".active");
+      let elems = document.querySelector(".active");
       if (elems != null) {
         elems.classList.remove("active");
       }
