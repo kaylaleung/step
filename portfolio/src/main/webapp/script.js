@@ -17,9 +17,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
   }
 });
 
-async function getName() {
-  const response = await fetch('/data');
-  const name = await response.text();
-  document.getElementById('name-container').innerText = name;
+function getName() {
+    fetch('/data').then(response => response.text()).then((name) => {
+        document.getElementById('name-container').innerText = name;
+    });
 }
 
