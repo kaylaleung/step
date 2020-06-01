@@ -38,10 +38,10 @@ input[type="checkbox"] {
   z-index: 100001;
   background: #6767b5;
   pointer-events: none;
+  opacity: 80%;
 }
 
-.icon:before {
-  content: 'close';
+.icon i:before {
   position: absolute;
   top: 0;
   left: 0;
@@ -50,10 +50,6 @@ input[type="checkbox"] {
   color: #fff;
   text-align: center;
   line-height: 50px;  
-}
-
-input[type="checkbox"]:checked ~ .icon:before {
-  content: 'open'
 }
 
 /* -------------- Side Bar --------------*/
@@ -104,38 +100,37 @@ input[type="checkbox"]:checked ~ .sidebar {
 
 /* -------------- Side Bar Menu --------------*/
 
-.sidebar .menu ul li {
+.tab {
   border-top: 1px solid rgba(255,255,255,0.05);
   border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
-.sidebar .menu ul li a {
+.tab a {
   padding: 15px;
   color: #bdb8d7;
   display: block;
   padding-left: 30px;
 }
 
-.sidebar .menu ul li a .fas {
+.tab a .fas {
   width: 25px;
 }
-
-.sidebar .menu ul li:hover {
+.tab:hover {
   background-color: #40317d;
 }
 
-.sidebar .menu ul li:hover a {
+.tab:hover a {
   color: #fff;
 }
 
-.sidebar .menu ul li a.active{
+.tab a.active{
   background: #00b5de;
   color: white;
 }
 
 /* -------------- Social Media --------------*/
 
-.sidebar .social_media ul {
+.social_media ul {
   list-style: none;
   margin: 0 10px;
   position: relative;
@@ -146,11 +141,11 @@ input[type="checkbox"]:checked ~ .sidebar {
   display: flex;
 }
 
-.sidebar .social_media li {
+.social_media li {
     margin: 0 2px;
 }
 
-.sidebar .social_media a {
+.social_media a {
   display: block;
   width: 30px;
   background: #fff;
@@ -165,28 +160,28 @@ input[type="checkbox"]:checked ~ .sidebar {
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
-.sidebar .social_media .fab {
+.social_media .fab {
     font-size: 18px;
     line-height: 30px;
 }
 
-.sidebar .social_media a:hover {
+.social_media a:hover {
   transform: rotate(0deg) skew(0deg) translate(0, -4px);
 }
 
-.sidebar .social_media li:nth-child(1) a:hover .fab {
+.facebook-icon a:hover .fab {
   color: #1d79f2;
 }
 
-.sidebar .social_media li:nth-child(2) a:hover .fab {
+.instagram-icon a:hover .fab {
   color: #dd2a7b;
 }
 
-.sidebar .social_media li:nth-child(3) a:hover .fab {
+.linkedin-icon a:hover .fab {
   color: #0e76a8;
 }
 
-.sidebar .social_media li:nth-child(4) a:hover .fab {
+.github-icon a:hover .fab {
   color: #000000;
 }
 
@@ -258,12 +253,12 @@ section .info h4 {
   background-size: cover;
 }
 
-section .info h3 .align-right-h3 {
+.align-right-h3 {
   font-size:smaller;
   float:right;
 }
 
-section .info h4 .align-right-h4 {
+.align-right-h4 {
   font-size:smaller;
   font-style:italic;
   float:right;
@@ -275,7 +270,8 @@ section .courses {
   padding: 20px;
   color: #474646;
 }
-section .courses ul li span {
+
+.course-num {
   color: #474646;
   font-weight: bold;
 }
@@ -316,3 +312,71 @@ section .courses ul li span {
   margin: 5px;
 }
 
+/* -------------- Project Hover Cards --------------*/
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  flex-wrap: wrap;
+  padding: 40px 30px 30px 30px;
+}
+
+.card {
+  max-width: 400px;
+  height: 300px;
+  position: relative;
+  background: #fff;
+  margin: 30px 10px;
+  padding: 25px 15px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 5px 20px rgba(0,0,0,.3);
+  transition: 0.5s ease-in-out;
+  border-radius: 5px;
+}
+
+.card:hover {
+  height: 450px;
+}
+
+.card img {
+  position: relative;
+  top: -40px;
+  width:100%;
+  object-fit: cover;
+}
+
+.card:hover .content p {
+  display: inline-flex;
+  position: relative;
+  text-align: center;
+  color: #111;
+  opacity: 1;
+}
+
+.card .content p {
+  display: none;
+  position: relative;
+  text-align: center;
+  color: #111;
+  opacity: 0;
+  animation: fadeIn 1.5s
+}
+
+.card .content h3 {
+  top: -40px;
+  text-align: center;
+  font-size: x-large;
+  color: #111;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
