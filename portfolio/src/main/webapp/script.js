@@ -17,9 +17,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
   }
 });
 
-function getName() {
-    fetch('/data').then(response => response.text()).then((name) => {
-        document.getElementById('name-container').innerText = name;
+function getComments() {
+    fetch('/data').then(response => response.json()).then((comments) => {
+        
+        const commentElement = document.getElementById('comment-container');
+        commentElement.innerHTML = '';
+
+        for(var i = 0; i < comments.length; i++) {
+            commentElement.append(comments[i] + " ");           
+        }
+
     });
 }
 
