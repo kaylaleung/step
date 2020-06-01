@@ -38,10 +38,10 @@ input[type="checkbox"] {
   z-index: 100001;
   background: #6767b5;
   pointer-events: none;
+  opacity: 80%;
 }
 
-.icon:before {
-  content: 'close';
+.icon i:before {
   position: absolute;
   top: 0;
   left: 0;
@@ -50,10 +50,6 @@ input[type="checkbox"] {
   color: #fff;
   text-align: center;
   line-height: 50px;  
-}
-
-input[type="checkbox"]:checked ~ .icon:before {
-  content: 'open'
 }
 
 /* -------------- Side Bar --------------*/
@@ -173,19 +169,19 @@ input[type="checkbox"]:checked ~ .sidebar {
   transform: rotate(0deg) skew(0deg) translate(0, -4px);
 }
 
-.social_media li:nth-child(1) a:hover .fab {
+.facebook-icon a:hover .fab {
   color: #1d79f2;
 }
 
-.social_media li:nth-child(2) a:hover .fab {
+.instagram-icon a:hover .fab {
   color: #dd2a7b;
 }
 
-.social_media li:nth-child(3) a:hover .fab {
+.linkedin-icon a:hover .fab {
   color: #0e76a8;
 }
 
-.social_media li:nth-child(4) a:hover .fab {
+.github-icon a:hover .fab {
   color: #000000;
 }
 
@@ -274,7 +270,8 @@ section .courses {
   padding: 20px;
   color: #474646;
 }
-.courseNum {
+
+.course-num {
   color: #474646;
   font-weight: bold;
 }
