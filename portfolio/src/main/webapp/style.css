@@ -349,20 +349,20 @@ section .courses {
 }
 
 .card:hover .content p {
+  display: inline-flex;
   position: relative;
   text-align: center;
   color: #111;
-  visibility: visible;
   opacity: 1;
-  transition: 1s ease-in-out;
 }
 
 .card .content p {
+  display: none;
   position: relative;
   text-align: center;
   color: #111;
   opacity: 0;
-  transition-delay: 0.2s;
+  animation: fadeIn 1.5s
 }
 
 .card .content h3 {
@@ -370,4 +370,13 @@ section .courses {
   text-align: center;
   font-size: x-large;
   color: #111;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
 }
