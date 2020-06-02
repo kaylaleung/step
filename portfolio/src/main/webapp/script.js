@@ -5,9 +5,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         toggleActiveSection(tab);
     });
 
-    var nameButton = document.getElementById("btn");
+    let commentButton = document.getElementById("btn");
     nameButton.addEventListener('click', (event) => {
-        getName();
+        getComments();
     });
 
 });
@@ -31,9 +31,8 @@ function getComments() {
         const commentElement = document.getElementById('comment-container');
         commentElement.innerHTML = '';
 
-        for(var i = 0; i < comments.length; i++) {
-            commentElement.append(comments[i] + " ");           
+        for (let comment of comments) {
+            commentElement.append(comment + " ");           
         }
-
     });
 }
