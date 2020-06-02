@@ -19,6 +19,9 @@ import com.google.sps.data.Comment;
 import com.google.gson.Gson;
 import java.util.Arrays;
 import java.util.ArrayList;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +36,7 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-       
+
     // Convert string of hard-coded messeges go JSON
     String json = convertToJson(comments);
 
@@ -47,7 +50,18 @@ public class DataServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     
     String text = request.getParameter("text-input");
-    comments.add(text);
+    String name = request.getParameter("name");
+
+    long timestamp = System.currentTimeMillis();
+
+    Entity taskEntity = new Entity("Comment");
+    taskEntity.setProperty("text", text);
+    taskEntity.setProperty("timestamp", timestamp);
+    taskEntity.setProperty("name", name);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(taskEntity);
+
     response.setContentType("text/html;");
     response.sendRedirect("blog.html");
   }
