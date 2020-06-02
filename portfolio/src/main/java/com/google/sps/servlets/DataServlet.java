@@ -42,11 +42,11 @@ public class DataServlet extends HttpServlet {
     // Send JSON as response
     response.setContentType("application/json;");
     response.getWriter().println(json);
-
+    
   }
 
   private String convertToJson(ArrayList<String> comments) {
       Gson gson = new Gson();
       return gson.toJson(comments);
   }
-}
+} 

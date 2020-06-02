@@ -4,6 +4,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
     element.addEventListener("click", (tab) => {
         toggleActiveSection(tab);
     });
+
+    let commentButton = document.getElementById("comment-btn");
+    commentButton.addEventListener('click', (event) => {
+        getComments();
+    });
 });
 
 function toggleActiveSection(tab) {
@@ -17,4 +22,16 @@ function toggleActiveSection(tab) {
       else {
         tab.target.classList.add("active");
       }
+}
+
+function getComments() {
+    fetch('/data').then(response => response.json()).then((comments) => {
+        
+        const commentElement = document.getElementById('comment-container');
+        commentElement.innerHTML = '';
+
+        for (let comment of comments) {
+            commentElement.append(comment + " ");           
+        }
+    });
 }
