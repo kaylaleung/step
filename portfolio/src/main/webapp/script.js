@@ -1,9 +1,18 @@
 window.addEventListener('DOMContentLoaded', (event) => {
 
-  let element = document.getElementsByClassName("menu")[0];
-  element.addEventListener("click", toggleActiveSection);
+    let element = document.getElementsByClassName("menu")[0];
+    element.addEventListener("click", (tab) => {
+        toggleActiveSection(tab);
+    });
 
-  function toggleActiveSection(tab) {
+    var nameButton = document.getElementById("btn");
+    nameButton.addEventListener('click', (event) => {
+        getName();
+    });
+
+});
+
+function toggleActiveSection(tab) {
       let elems = document.querySelector(".active");
       if (elems != null) {
         elems.classList.remove("active");
@@ -14,5 +23,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
       else {
         tab.target.classList.add("active");
       }
-  }
-});
+    }
+
+function getName() {
+    fetch('/data').then(response => response.text()).then((name) => {
+        document.getElementById('name-container').innerText = name;
+    });
+}
