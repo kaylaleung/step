@@ -31,7 +31,7 @@ function getComments() {
         commentElement.innerHTML = '';
 
         for (let comment of comments) {
-            commentElement.append(comment + " ");           
+            commentElement.append(comment +  ", ");           
         }
     });
 }

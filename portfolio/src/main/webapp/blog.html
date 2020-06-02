@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
   </head>
-  <body>
+  <body onload="getComments()">
 
     <!-- Toggle Side View -->
     <input type="checkbox" name="" \>
@@ -60,6 +60,12 @@
 
           <button id="comment-btn">Get Comment!</button>
           <div id="comment-container"></div>
+
+          <form action="/data" method="POST">
+            <label for="feedback">Comments?</label><br>
+            <textarea id="feedback" name="text-input">Leave comment here</textarea>
+            <input type="submit"/>
+          </form>
 
         </div> 
       </section>
