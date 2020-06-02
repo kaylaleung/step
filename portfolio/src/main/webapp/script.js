@@ -22,4 +22,3 @@ function getName() {
         document.getElementById('name-container').innerText = name;
     });
 }
-

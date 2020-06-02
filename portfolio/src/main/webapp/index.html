@@ -16,8 +16,8 @@
   <body>
 
     <!-- Toggle Side View -->
-    <input type="checkbox" name="">
-    <span class="icon"></span>
+    <input type="checkbox" name="" \>
+    <span class="icon"><i class="fas fa-bars" alt="menu icon"></i></span>
     
     <!-- Left Side Bar -->
     <div class="sidebar">
@@ -31,20 +31,20 @@
 
         <div class="social_media">
           <ul>
-            <li><a href="//www.facebook.com/kaylayleung"><i class="fab fa-facebook-f" alt="facebook icon"></i></a></li>
-            <li><a href="//www.instagram.com/kaylaleung/"><i class="fab fa-instagram" alt="instagram icon"></i></a></li>
-            <li><a href="//www.linkedin.com/in/kaylaleung/"><i class="fab fa-linkedin" alt="linkedin icon"></i></a></li>
-            <li><a href="//www.github.com/kaylaleung"><i class="fab fa-github" alt="github icon"></i></a></li>
+            <li class="facebook-icon"><a href="//www.facebook.com/kaylayleung"><i class="fab fa-facebook-f" alt="facebook icon"></i></a></li>
+            <li class="instagram-icon"><a href="//www.instagram.com/kaylaleung/"><i class="fab fa-instagram" alt="instagram icon"></i></a></li>
+            <li class="linkedin-icon"><a href="//www.linkedin.com/in/kaylaleung/"><i class="fab fa-linkedin" alt="linkedin icon"></i></a></li>
+            <li class="github-icon"><a href="//www.github.com/kaylaleung"><i class="fab fa-github" alt="github icon"></i></a></li>
           </ul>
         </div>
 
         <div class="menu">
           <ul>
-              <li><a href="#home" class="active"><i class="fas fa-home"></i>Home</a></li>
-              <li><a href="#education"><i class="fas fa-user"></i>Education</a></li>
-              <li><a href="#experience"><i class="fas fa-address-card"></i>Experience</a></li>
-              <li><a href="#projects"><i class="fas fa-project-diagram"></i>Projects</a></li>
-              <li><a href="#blog"><i class="fas fa-blog"></i>Blog</a></li>
+              <li class="tab"><a href="#home" class="active"><i class="fas fa-home"></i>Home</a></li>
+              <li class="tab"><a href="#education"><i class="fas fa-user"></i>Education</a></li>
+              <li class="tab"><a href="#experience"><i class="fas fa-address-card"></i>Experience</a></li>
+              <li class="tab"><a href="#projects"><i class="fas fa-project-diagram"></i>Projects</a></li>
+              <li class="tab"><a href="#blog"><i class="fas fa-blog"></i>Blog</a></li>
           </ul>
         </div>
     </div>
@@ -101,13 +101,13 @@
             
           <div class="courses">
             <ul>
-              <li><span>15-440</span> Distributed Systems</li>
-              <li><span>15-213</span> Introduction to Computer Systems</li>
-              <li><span>05-391</span> Designing Human Centered Software</li>
+              <li><span class="course-num">15-440</span> Distributed Systems</li>
+              <li><span class="course-num">15-213</span> Introduction to Computer Systems</li>
+              <li><span class="course-num">05-391</span> Designing Human Centered Software</li>
               <br>
-              <li><span>10-315</span> Introduction to Machine Learning</li>
-              <li><span>15-210</span> Parallel and Sequential Data Strctures and Algorithms</li>
-              <li><span>15-251</span> Great Theoretical Ideas in Computer Science</li>
+              <li><span class="course-num">10-315</span> Introduction to Machine Learning</li>
+              <li><span class="course-num">15-210</span> Parallel and Sequential Data Strctures and Algorithms</li>
+              <li><span class="course-num">15-251</span> Great Theoretical Ideas in Computer Science</li>
             </ul>
           </div>
 
@@ -174,8 +174,34 @@
         <div class="info">     
           <h2>Projects</h2>
 
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
+          <div class="container">
+            <div class="card">
+              <img src=images/motm.jpg width="200" height="175">
+              <div class="content">
+                <h3>Word2Vec Retrieval Induced Forgetting</h3>
+                <p>Investigate word2vec machine learning models to learn salient stimuli in retrieval induced forgetting and conducting online study testing memory inhibition.</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <img src=images/mindfulnest.png width="200" height="175">
+              <div class="content">
+                <h3>CREATE Lab MindfulNest</h3>
+                <p> Design front end interface for Android mobile app, MindfulNest, teaching pre-K students emotion control and self-calming with interactive breathing and stress relieving exercises through the app interface.
+                </p>
+              </div>
+            </div>
+
+            <div class="card">
+              <img src=images/ai.jpg width="200" height="175">
+              <div class="content">
+                <h3>Augmented Reality Futuring Project</h3>
+                <p> Explore personalizable AI tech in classrooms and students’ experience of agency when using AI/AR systems. Presented research group paper to CMU Provost, Vice Provost for Education.
+                </p>
+              </div>
+            </div>
+
+          </div>
 
         </div> 
       </section>
