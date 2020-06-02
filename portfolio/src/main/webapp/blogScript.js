@@ -4,11 +4,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
     element.addEventListener("click", (tab) => {
         toggleActiveSection(tab);
     });
-
-    let commentButton = document.getElementById("comment-btn");
-    commentButton.addEventListener('click', (event) => {
-        getComments();
-    });
 });
 
 function toggleActiveSection(tab) {
