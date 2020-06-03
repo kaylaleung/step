@@ -280,3 +280,15 @@ html {
     font-size: 10px;
     font-style: italic;
   }
+
+  input[type=submit] {
+    border-radius: 15px;
+    background-color: #a1a1cc;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 14px;
+    padding: 10px;
+    transition: all 0.5s;
+    cursor: pointer;
+  }
