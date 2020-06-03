@@ -14,8 +14,6 @@
 
 package com.google.sps.servlets;
 
-import java.io.*; 
-import com.google.sps.data.Comment;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.io.IOException;
@@ -36,7 +34,7 @@ public class DataServlet extends HttpServlet {
     comments.add("Second Comment");
     comments.add("Third Comment");
 
-    // Convert string of hard-coded messeges go JSON
+    // Convert string of hard-coded messages to JSON
     String json = convertToJson(comments);
 
     // Send JSON as response
@@ -49,4 +47,4 @@ public class DataServlet extends HttpServlet {
       Gson gson = new Gson();
       return gson.toJson(comments);
   }
-} 
+}
