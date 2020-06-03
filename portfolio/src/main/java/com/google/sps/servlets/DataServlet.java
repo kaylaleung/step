@@ -36,6 +36,7 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
+<<<<<<< HEAD
     Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
@@ -47,6 +48,9 @@ public class DataServlet extends HttpServlet {
       comments.add(text);
     }
 
+=======
+    // Convert string of hard-coded messages to JSON
+>>>>>>> master
     String json = convertToJson(comments);
 
     response.setContentType("application/json;");
@@ -78,5 +82,9 @@ public class DataServlet extends HttpServlet {
       Gson gson = new Gson();
       return gson.toJson(comments);
   }
+<<<<<<< HEAD
 
 } 
+=======
+}
+>>>>>>> master
