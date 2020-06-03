@@ -9,18 +9,27 @@ function getComments() {
     });
 }
 
-function createCommentElement(task) {
+function createCommentElement(comment) {
   const commentElement = document.createElement('li');
   commentElement.className = 'comment';
   
 
-  const textElement = document.createElement('span');
-  textElement.innerText = task.name;
-
   const nameElement = document.createElement('span');
-  nameElement.innerText = task.text;
+  nameElement.innerText = comment.name;
+  nameElement.className = "username"
 
-  commentElement.appendChild(textElement);
+  const timeElement = document.createElement('span');
+  var date = new Date(comment.timestamp);
+  timeElement.innerText = date.toDateString(); 
+  timeElement.className = "time"
+
+  const textElement = document.createElement('div');
+  textElement.innerText = comment.text;
+  textElement.className = "response"
+
   commentElement.appendChild(nameElement);
+  commentElement.appendChild(timeElement);
+  commentElement.appendChild(textElement);
+
   return commentElement;
 }
