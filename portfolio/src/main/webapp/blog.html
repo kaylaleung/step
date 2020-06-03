@@ -60,12 +60,16 @@
           <div class ="title"><h2>All Comments</h2></div>
           <div id="comment-container"></div>
 
-          <div class ="title"><h2>Leave A Comment</h2></div>
+          <div class ="title"><h2>Leave a Reply</h2></div>
           <form action="/data" method="POST">
-            <label for="name">Name:</label><br>
-            <input type="text" id="name" name="name"> <br>
-            <label for="feedback">Comments:</label><br>
-            <textarea id="feedback" name="text-input"></textarea>
+            <div class="inputBox">
+              <label for="name">Name</label><br>
+              <input type="text" id="name" name="name" required="required">
+            </div>
+            <div class="inputBox">
+              <label for="feedback">Comment</label><br>
+              <textarea id="feedback" name="text-input" cols ="100" rows="8" maxlength="10000" required="required"></textarea>
+            </div>
             <input type="submit"/>
           </form>
 
@@ -74,3 +78,4 @@
     </div>
   </body>
 </html>
+

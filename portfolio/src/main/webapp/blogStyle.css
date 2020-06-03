@@ -243,3 +243,13 @@ html {
     background-color: #fff;
     background-size: cover;
   }
+
+  form {
+    padding: 20px;
+    color: #717171;
+    line-height: 25px;
+  }
+
+  .inputBox {
+      padding-bottom: 20px;
+  }
