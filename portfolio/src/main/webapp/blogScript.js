@@ -19,7 +19,7 @@ function createCommentElement(comment) {
   nameElement.className = "username"
 
   const timeElement = document.createElement('span');
-  var date = new Date(comment.timestamp);
+  let date = new Date(comment.timestamp);
   timeElement.innerText = date.toDateString(); 
   timeElement.className = "time"
 
