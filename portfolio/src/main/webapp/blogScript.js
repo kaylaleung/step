@@ -6,19 +6,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
 function getPost() {
   fetch('/post').then(response => response.json()).then((posts) => {
 
-      var number = parent.document.URL.substring(parent.document.URL.indexOf('postNum='), parent.document.URL.length);
-      console.log(number.substring(8))
+    var number = parent.document.URL.substring(parent.document.URL.indexOf('postNum='), parent.document.URL.length);
+    var blogNum = number.substring(8);
 
-      const postElement = document.getElementById('post-container');
-
-      console.log(postElement);
-      postElement.innerHTML = '';
-
-      posts.forEach((post) => {
-        console.log(post.title);
-        postElement.innerHTML = post.blogpost;        
-      }) 
-      
+    const postElement = document.getElementById('post-container');
+    postElement.innerHTML = '';
+    postElement.append((posts[blogNum]).blogpost);
   });
 }
 
@@ -26,7 +19,6 @@ function getComments() {
     fetch('/data').then(response => response.json()).then((comments) => {
         
         const commentListElement = document.getElementById('comment-list');
-
         comments.forEach((comment) => {
           commentListElement.appendChild(createCommentElement(comment));
         }) 
