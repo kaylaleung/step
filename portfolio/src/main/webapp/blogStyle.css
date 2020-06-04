@@ -8,6 +8,10 @@ form {
   padding-bottom: 20px;
 }
 
+label {
+  display: block;
+}
+
 .comment {
   padding: 10px 30px 10px 30px;
   margin: 20px 50px 20px 50px;

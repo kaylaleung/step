@@ -6,9 +6,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 function getPost() {
   fetch('/post').then(response => response.json()).then((posts) => {
 
-    var number = parent.document.URL.substring(parent.document.URL.indexOf('postNum='), parent.document.URL.length);
-    var blogNum = number.substring(8);
-
+    const number = parent.document.URL.substring(parent.document.URL.indexOf('postNum='), parent.document.URL.length);
+    const blogNum = number.substring(8);
     const postElement = document.getElementById('post-container');
     postElement.innerHTML = '';
     postElement.append((posts[blogNum]).blogpost);
@@ -29,7 +28,6 @@ function createCommentElement(comment) {
   const commentElement = document.createElement('li');
   commentElement.className = 'comment';
   
-
   const nameElement = document.createElement('span');
   nameElement.innerText = comment.name;
   nameElement.className = "username"

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Kayla Leung</title>
 
+    <link rel="stylesheet" href="blogStyle.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="blogStyle.css">
     <link rel="stylesheet" href="font.css">
@@ -67,11 +68,11 @@
           <h2>Leave a Reply</h2>
           <form action="/data" method="POST">
             <div class="inputBox">
-              <label for="name">Name</label><br>
+              <label for="name">Name</label>
               <input type="text" id="name" name="name" required="required">
             </div>
             <div class="inputBox">
-              <label for="feedback">Comment</label><br>
+              <label for="feedback">Comment</label>
               <textarea id="feedback" name="text-input" cols ="100" rows="8" maxlength="10000" required="required"></textarea>
             </div>
             <input type="submit" value="Post a Comment"/>
@@ -79,15 +80,16 @@
 
           <form action="/post" method="POST">
             <div class="inputBox">
-              <label for="title">Title</label><br>
+              <label for="title">Title</label>
               <input type="text" id="title" name="title">
             </div>
             <div class="inputBox">
-              <label for="post">Write Blog Post</label><br>
+              <label for="post">Write Blog Post</label>
               <textarea id="post" name="blog-input" cols ="100" rows="8"></textarea>
             </div>
             <input type="submit" value="Submit Blog Post"/>
           </form>
+          
         </div> 
       </section>
     </div>
