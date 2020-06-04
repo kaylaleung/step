@@ -31,6 +31,10 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
+  private static final String textParameter = "text-input";
+  private static final String nameParameter = "name";
+  private static final String timestampParameter = "timestamp";
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     
@@ -58,15 +62,14 @@ public class DataServlet extends HttpServlet {
   
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     
-    final String text = request.getParameter("text-input");
-    final String name = request.getParameter("name");
-
+    String text = request.getParameter(textParameter);
+    String name = request.getParameter(nameParameter);
     long timestamp = System.currentTimeMillis();
 
     Entity taskEntity = new Entity("Comment");
-    taskEntity.setProperty("text", text);
-    taskEntity.setProperty("timestamp", timestamp);
-    taskEntity.setProperty("name", name);
+    taskEntity.setProperty(textParameter, text);
+    taskEntity.setProperty(timestampParameter, timestamp);
+    taskEntity.setProperty(nameParameter, name);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(taskEntity);
