@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Kayla Leung</title>
 
-    <link rel="stylesheet" href="blogStyle.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="font.css">
 
     <script src="script.js"></script>
@@ -13,10 +13,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
   </head>
-  <body onload="getComments()">
+  <body>
 
     <!-- Toggle Side View -->
-    <input type="checkbox" name="" \>
+    <input type="checkbox" name="">
     <span class="icon"><i class="fas fa-bars" alt="menu icon"></i></span>
     
     <!-- Left Side Bar -->
@@ -54,18 +54,18 @@
     <div class="menu">
       <section class="banner">
         <div class="info">
-          <div class ="title"><h2>Blog Title</h2></div>
+          <h2>Blog Title</h2>
           
           <p> Insert some blog post content here. </p>
 
-          <div class ="title"><h2>All Comments</h2></div>
+          <h2>All Comments</h2>
           <div id="comment-container"></div>
 
-          <div class ="title"><h2>Leave A Comment</h2></div>
+          <h2>Leave A Comment</h2>
           <form action="/data" method="POST">
-            <label for="name">Name:</label><br>
-            <input type="text" id="name" name="name"> <br>
-            <label for="feedback">Comments:</label><br>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"> 
+            <label for="feedback">Comments:</label>
             <textarea id="feedback" name="text-input"></textarea>
             <input type="submit"/>
           </form>

@@ -31,10 +31,10 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-  private ArrayList<String> comments;
-
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    
+    ArrayList<String> comments;
 
     Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -54,10 +54,12 @@ public class DataServlet extends HttpServlet {
   }
 
   @Override
+
+  
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     
-    String text = request.getParameter("text-input");
-    String name = request.getParameter("name");
+    final String text = request.getParameter("text-input");
+    final String name = request.getParameter("name");
 
     long timestamp = System.currentTimeMillis();
 

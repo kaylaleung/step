@@ -1,3 +1,7 @@
+window.addEventListener('DOMContentLoaded', (event) => {
+    getComments();
+});
+
 function getComments() {
     fetch('/data').then(response => response.json()).then((comments) => {
         
