@@ -5,6 +5,7 @@
     <title>Kayla Leung</title>
 
     <link rel="stylesheet" href="blogStyle.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="font.css">
 
     <script src="script.js"></script>
@@ -13,10 +14,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
   </head>
-  <body onload="getComments()">
+  <body>
 
     <!-- Toggle Side View -->
-    <input type="checkbox" name="" \>
+    <input type="checkbox" name="">
     <span class="icon"><i class="fas fa-bars" alt="menu icon"></i></span>
     
     <!-- Left Side Bar -->
@@ -54,27 +55,27 @@
     <div class="menu">
       <section class="banner">
         <div class="info">
-          <div class ="title"><h2>Blog Title</h2></div>
-          
+          <h2>Blog Title</h2>
           <p> Insert some blog post content here. </p>
-
-          <div class ="title"><h2>All Comments</h2></div>
+          
+          <h2>All Comments</h2>
           <div id="comment-container">
             <ul id="comment-list"></ul>
           </div>
 
-          <div class ="title"><h2>Leave a Reply</h2></div>
+          <h2>Leave A Reply</h2>
           <form action="/data" method="POST">
             <div class="inputBox">
-              <label for="name">Name</label><br>
+              <label for="name">Name</label>
               <input type="text" id="name" name="name" required="required">
             </div>
             <div class="inputBox">
-              <label for="feedback">Comment</label><br>
+              <label for="feedback">Comment</label>
               <textarea id="feedback" name="text-input" cols ="100" rows="8" maxlength="10000" required="required"></textarea>
             </div>
             <input type="submit" value="Post a Comment"/>
           </form>
+          
         </div> 
       </section>
     </div>

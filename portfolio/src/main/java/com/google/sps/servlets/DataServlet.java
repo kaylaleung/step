@@ -32,42 +32,44 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
+  private static final String TEXT_PARAM = "text";
+  private static final String TEXTIN_PARAM = "text-input";
+  private static final String NAME_PARAM = "name";
+  private static final String TIME_PARAM = "timestamp";
+  private static final String COMMENT = "Comment";
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
+    Query query = new Query(COMMENT).addSort(TIME_PARAM, SortDirection.DESCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
-
     ArrayList<Comment> comments = new ArrayList<>();
 
     for (Entity entity : results.asIterable()) {
-      String name = (String) entity.getProperty("name");
-      String text = (String) entity.getProperty("text");
-      long timestamp = (long) entity.getProperty("timestamp");
-
+      String name = (String) entity.getProperty(NAME_PARAM);
+      String text = (String) entity.getProperty(TEXT_PARAM);
+      long timestamp = (long) entity.getProperty(TIME_PARAM);
       Comment comment = new Comment(name, text, timestamp);
       comments.add(comment);
     }
 
     String json = convertToJson(comments);
-
     response.setContentType("application/json;");
     response.getWriter().println(json);
-
   }
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     
-    String text = request.getParameter("text-input");
-    String name = request.getParameter("name");
+    String text = request.getParameter(TEXTIN_PARAM);
+    String name = request.getParameter(NAME_PARAM);
     long timestamp = System.currentTimeMillis();
 
-    Entity commentEntity = new Entity("Comment");
-    commentEntity.setProperty("text", text);
-    commentEntity.setProperty("timestamp", timestamp);
-    commentEntity.setProperty("name", name);
+    Entity commentEntity = new Entity(COMMENT);
+    commentEntity.setProperty(TEXT_PARAM, text);
+    commentEntity.setProperty(TIME_PARAM, timestamp);
+    commentEntity.setProperty(NAME_PARAM, name);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);

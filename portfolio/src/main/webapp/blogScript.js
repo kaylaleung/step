@@ -1,8 +1,11 @@
+window.addEventListener('DOMContentLoaded', (event) => {
+    getComments();
+});
+
 function getComments() {
     fetch('/data').then(response => response.json()).then((comments) => {
         
         const commentListElement = document.getElementById('comment-list');
-
         comments.forEach((comment) => {
           commentListElement.appendChild(createCommentElement(comment));
         }) 
@@ -13,7 +16,6 @@ function createCommentElement(comment) {
   const commentElement = document.createElement('li');
   commentElement.className = 'comment';
   
-
   const nameElement = document.createElement('span');
   nameElement.innerText = comment.name;
   nameElement.className = "username"
