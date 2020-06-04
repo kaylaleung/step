@@ -1,7 +1,11 @@
+window.addEventListener('DOMContentLoaded', (event) => {
+    getPost();
+    getComments();
+});
+
 function getPost() {
   fetch('/post').then(response => response.json()).then((posts) => {
 
-      // console.log(location.search);
       var number = parent.document.URL.substring(parent.document.URL.indexOf('postNum='), parent.document.URL.length);
       console.log(number.substring(8))
 

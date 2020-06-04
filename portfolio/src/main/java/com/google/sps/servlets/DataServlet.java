@@ -34,7 +34,7 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
+    
     Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
@@ -54,14 +54,16 @@ public class DataServlet extends HttpServlet {
 
     response.setContentType("application/json;");
     response.getWriter().println(json);
-
   }
 
   @Override
+
+  
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     
-    String text = request.getParameter("text-input");
-    String name = request.getParameter("name");
+    final String text = request.getParameter("text-input");
+    final String name = request.getParameter("name");
+
     long timestamp = System.currentTimeMillis();
 
     Entity commentEntity = new Entity("Comment");
@@ -80,4 +82,4 @@ public class DataServlet extends HttpServlet {
       Gson gson = new Gson();
       return gson.toJson(comments);
   }
-} 
+}
