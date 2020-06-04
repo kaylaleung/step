@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
   </head>
-  <body onload="getComments()">
+  <body onload="getPost()">
 
     <!-- Toggle Side View -->
     <input type="checkbox" name="" \>
@@ -57,6 +57,7 @@
           <div class ="title"><h2>Blog Title</h2></div>
           
           <p> Insert some blog post content here. </p>
+          <div id="post-container"></div>
 
           <div class ="title"><h2>All Comments</h2></div>
           <div id="comment-container">
@@ -74,6 +75,18 @@
               <textarea id="feedback" name="text-input" cols ="100" rows="8" maxlength="10000" required="required"></textarea>
             </div>
             <input type="submit" value="Post a Comment"/>
+          </form>
+
+          <form action="/post" method="POST">
+            <div class="inputBox">
+              <label for="title">Title</label><br>
+              <input type="text" id="title" name="title">
+            </div>
+            <div class="inputBox">
+              <label for="post">Write Blog Post</label><br>
+              <textarea id="post" name="blog-input" cols ="100" rows="8"></textarea>
+            </div>
+            <input type="submit" value="Submit Blog Post"/>
           </form>
         </div> 
       </section>
