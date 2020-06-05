@@ -15,6 +15,13 @@
 package com.google.sps.servlets;
 
 import com.google.gson.Gson;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
+import java.util.List;
 import java.util.ArrayList;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
@@ -22,28 +29,53 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
+  private static final String TEXT_PARAM = "text";
+  private static final String TEXTIN_PARAM = "text-input";
+  private static final String NAME_PARAM = "name";
+  private static final String TIME_PARAM = "timestamp";
+  private static final String COMMENT = "Comment";
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-       
-    ArrayList<String> comments = new ArrayList<String>();
-    comments.add("First Comment");
-    comments.add("Second Comment");
-    comments.add("Third Comment");
+    
+    Query query = new Query(COMMENT).addSort(TIME_PARAM, SortDirection.DESCENDING);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
+    List<String> comments = new ArrayList<>();
 
-    // Convert string of hard-coded messages to JSON
+    for (Entity entity : results.asIterable()) {
+      String text = (String) entity.getProperty(TEXT_PARAM);
+      comments.add(text);
+    }
+
     String json = convertToJson(comments);
-
-    // Send JSON as response
     response.setContentType("application/json;");
     response.getWriter().println(json);
-    
   }
 
-  private String convertToJson(ArrayList<String> comments) {
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    
+    final String text = request.getParameter(TEXTIN_PARAM);
+    final String name = request.getParameter(NAME_PARAM);
+    long timestamp = System.currentTimeMillis();
+
+    Entity taskEntity = new Entity(COMMENT);
+    taskEntity.setProperty(TEXT_PARAM, text);
+    taskEntity.setProperty(TIME_PARAM, timestamp);
+    taskEntity.setProperty(NAME_PARAM, name);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(taskEntity);
+
+    response.setContentType("text/html;");
+    response.sendRedirect("blog.html");
+  }
+
+  private String convertToJson(List<String> comments) {
       Gson gson = new Gson();
       return gson.toJson(comments);
   }

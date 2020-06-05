@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="font.css">
 
+    <script src="script.js"></script>
     <script src="blogScript.js"></script>
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,7 +16,7 @@
   <body>
 
     <!-- Toggle Side View -->
-    <input type="checkbox" name="" \>
+    <input type="checkbox" name="">
     <span class="icon"><i class="fas fa-bars" alt="menu icon"></i></span>
     
     <!-- Left Side Bar -->
@@ -53,10 +54,21 @@
     <div class="menu">
       <section class="banner">
         <div class="info">
-          <div class="title"><h2>Blog Title</h2></div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-          <button id="comment-btn">Get Comment!</button>
+          <h2>Blog Title</h2>
+          
+          <p> Insert some blog post content here. </p>
+
+          <h2>All Comments</h2>
           <div id="comment-container"></div>
+
+          <h2>Leave A Comment</h2>
+          <form action="/data" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"> 
+            <label for="feedback">Comments:</label>
+            <textarea id="feedback" name="text-input"></textarea>
+            <input type="submit">
+          </form>
 
         </div> 
       </section>
