@@ -10,11 +10,15 @@ function getPost() {
     const tagStr = number.substring(4);
     
     const postElement = document.getElementById('post-container');
+    const titleElement = document.getElementById('title-container');
+
     postElement.innerHTML = '';
+    titleElement.innerHTML ='';
 
     posts.forEach((post) => {
         if ((post.tag) === tagStr) {
             postElement.append(post.blogpost);
+            titleElement.append(post.title);
         }
     });
   });

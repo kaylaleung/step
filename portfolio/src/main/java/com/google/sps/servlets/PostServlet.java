@@ -18,21 +18,32 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/post")
 public class PostServlet extends HttpServlet {
 
+  private static final String POST_PARAM = "blogpost";
+  private static final String POSTIN_PARAM = "blog-input";
+  private static final String TITLE_PARAM = "title";
+  private static final String TIME_PARAM = "timestamp";
+  private static final String CAT_PARAM = "category";
+  private static final String TAG_PARAM = "tag";
+  private static final String BLOGPOST = "BlogPost";
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-    Query query = new Query("BlogPost").addSort("timestamp", SortDirection.DESCENDING);
+    Query query = new Query(BLOGPOST).addSort(TIME_PARAM, SortDirection.ASCENDING);
+
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
     ArrayList<BlogPost> posts = new ArrayList<>();
 
     for (Entity entity : results.asIterable()) {
-      String title = (String) entity.getProperty("title");
-      String blogpost = (String) entity.getProperty("blogpost");
-      long timestamp = (long) entity.getProperty("timestamp");
+      String title = (String) entity.getProperty(TITLE_PARAM);
+      String tag = (String) entity.getProperty(TAG_PARAM);
+      String category = (String) entity.getProperty(CAT_PARAM);
+      String blogpost = (String) entity.getProperty(POST_PARAM);
+      long timestamp = (long) entity.getProperty(TIME_PARAM);
 
-      BlogPost post = new BlogPost(title, blogpost, timestamp);
+      BlogPost post = new BlogPost(title, tag, category, blogpost, timestamp);
       posts.add(post);
     }
 
@@ -46,14 +57,18 @@ public class PostServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     
-    String title = request.getParameter("title");
-    String blogpost = request.getParameter("blog-input");
+    String title = request.getParameter(TITLE_PARAM);
+    String tag = request.getParameter(TAG_PARAM);
+    String category = request.getParameter(CAT_PARAM);
+    String blogpost = request.getParameter(POSTIN_PARAM);
     long timestamp = System.currentTimeMillis();
 
-    Entity postEntity = new Entity("BlogPost");
-    postEntity.setProperty("title", title);
-    postEntity.setProperty("blogpost", blogpost);
-    postEntity.setProperty("timestamp", timestamp);
+    Entity postEntity = new Entity(BLOGPOST);
+    postEntity.setProperty(TITLE_PARAM, title);
+    postEntity.setProperty(TAG_PARAM, tag);
+    postEntity.setProperty(CAT_PARAM, category);
+    postEntity.setProperty(POST_PARAM, blogpost);
+    postEntity.setProperty(TIME_PARAM, timestamp);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(postEntity);

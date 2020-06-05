@@ -49,4 +49,10 @@ input[type=submit] {
   transition: all 0.5s;
   cursor: pointer;
 }
+
+#post-container {
+  padding: 20px;
+  color: #717171;
+  line-height: 25px;
+}
   
