@@ -16,14 +16,15 @@ package com.google.sps.servlets;
 
 import com.google.sps.data.Comment;
 import com.google.gson.Gson;
-import java.util.ArrayList;
-import java.io.IOException;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import java.util.List;
+import java.util.ArrayList;
+import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -44,7 +45,7 @@ public class DataServlet extends HttpServlet {
     Query query = new Query(COMMENT).addSort(TIME_PARAM, SortDirection.DESCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
-    ArrayList<Comment> comments = new ArrayList<>();
+    List<Comment> comments = new ArrayList<>();
 
     for (Entity entity : results.asIterable()) {
       String name = (String) entity.getProperty(NAME_PARAM);
@@ -78,7 +79,7 @@ public class DataServlet extends HttpServlet {
     response.sendRedirect("blog.html");
   }
 
-  private String convertToJson(ArrayList<Comment> comments) {
+  private String convertToJson(List<Comment> comments) {
       Gson gson = new Gson();
       return gson.toJson(comments);
   }
