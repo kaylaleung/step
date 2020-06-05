@@ -55,4 +55,8 @@ input[type=submit] {
   color: #717171;
   line-height: 25px;
 }
+
+.writePost {
+  display: none;
+}
   

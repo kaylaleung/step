@@ -78,25 +78,27 @@
             <input type="submit" value="Post a Comment"/>
           </form>
 
-          <form action="/post" method="POST">
-            <div class="inputBox">
-              <label for="title">Title</label>
-              <input type="text" id="title" name="title">
-            </div>
-            <div class="inputBox">
-              <label for="tag">Tag</label>
-              <input type="text" id="tag" name="tag">
-            </div>
-            <div class="inputBox">
-              <label for="category">Category</label>
-              <input type="text" id="category" name="category">
-            </div>
-            <div class="inputBox">
-              <label for="post">Write Blog Post</label>
-              <textarea id="post" name="blog-input" cols ="100" rows="8"></textarea>
-            </div>
-            <input type="submit" value="Submit Blog Post"/>
-          </form>
+          <div class="writePost"> 
+            <form action="/post" method="POST">
+              <div class="inputBox">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title">
+              </div>
+              <div class="inputBox">
+                <label for="tag">Tag</label>
+                <input type="text" id="tag" name="tag">
+              </div>
+              <div class="inputBox">
+                <label for="category">Category</label>
+                <input type="text" id="category" name="category">
+              </div>
+              <div class="inputBox">
+                <label for="post">Write Blog Post</label>
+                <textarea id="post" name="blog-input" cols ="100" rows="8"></textarea>
+              </div>
+              <input type="submit" value="Submit Blog Post"/>
+            </form>
+          </div>
           
         </div> 
       </section>
