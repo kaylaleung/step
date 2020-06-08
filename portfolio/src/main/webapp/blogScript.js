@@ -34,13 +34,11 @@ function getPost() {
 }
 
 function getComments() {
-
     fetch('/data?tag=' + tagStr).then(response => response.json()).then((comments) => {
-        
-        const commentListElement = document.getElementById('comment-list');
-        comments.forEach((comment) => {
-          commentListElement.appendChild(createCommentElement(comment));
-        }) 
+      const commentListElement = document.getElementById('comment-list');
+      for (comment of comments) {
+        commentListElement.appendChild(createCommentElement(comment));
+      }
     });
 }
 
@@ -51,16 +49,16 @@ function createCommentElement(comment) {
 
   const nameElement = document.createElement('span');
   nameElement.innerText = comment.name;
-  nameElement.className = "username"
+  nameElement.className = 'username';
 
   const timeElement = document.createElement('span');
-  let date = new Date(comment.timestamp);
+  const date = new Date(comment.timestamp);
   timeElement.innerText = date.toDateString(); 
-  timeElement.className = "time"
+  timeElement.className = 'time';
 
   const textElement = document.createElement('div');
   textElement.innerText = comment.text;
-  textElement.className = "response"
+  textElement.className = 'response';
 
   commentElement.appendChild(nameElement);
   commentElement.appendChild(timeElement);
