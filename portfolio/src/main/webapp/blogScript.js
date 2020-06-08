@@ -2,6 +2,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     getURL();
     getPost();
     getComments();
+    getUser();
 });
 
 const number = parent.document.URL.substring(parent.document.URL.indexOf('tag='), parent.document.URL.length);
@@ -12,6 +13,11 @@ function getURL() {
     urlElement.value = '/blog.html?tag=' + tagStr;
 }
 
+function getUsert() {
+  fetch('/auth').then(response => response.json()).then((user) => {  
+  });
+
+}
 function getPost() {
 
   fetch('/post?tag=' + tagStr).then(response => response.json()).then((posts) => {  
