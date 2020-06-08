@@ -40,6 +40,7 @@ public class DataServlet extends HttpServlet {
   private static final String TAG_PARAM = "tag";
   private static final String URL_PARAM = "current-url";
   private static final String COMMENT = "Comment";
+  private static final int PATH_LEN = 15;
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -57,7 +58,7 @@ public class DataServlet extends HttpServlet {
         String text = (String) entity.getProperty(TEXT_PARAM);
         long timestamp = (long) entity.getProperty(TIME_PARAM);
         Comment comment = new Comment(name, text, tag, timestamp);
-          comments.add(comment);
+        comments.add(comment);
       }
     }
 
@@ -85,7 +86,7 @@ public class DataServlet extends HttpServlet {
     String text = request.getParameter(TEXTIN_PARAM);
     String name = request.getParameter(NAME_PARAM);
     String url = request.getParameter(URL_PARAM);
-    String tag = url.substring(15);
+    String tag = url.substring(PATH_LEN);
     long timestamp = System.currentTimeMillis();
 
     Entity commentEntity = new Entity(COMMENT);

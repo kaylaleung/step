@@ -64,7 +64,6 @@ public class PostServlet extends HttpServlet {
     String json = convertToJson(posts);
     response.setContentType("application/json;");
     response.getWriter().println(json);
-
   }
 
   @Override
