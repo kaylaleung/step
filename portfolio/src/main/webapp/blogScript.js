@@ -1,14 +1,23 @@
 window.addEventListener('DOMContentLoaded', (event) => {
+    getURL();
     getPost();
     getComments();
 });
 
-function getPost() {
-  fetch('/post').then(response => response.json()).then((posts) => {
+const number = parent.document.URL.substring(parent.document.URL.indexOf('tag='), parent.document.URL.length);
 
-    const number = parent.document.URL.substring(parent.document.URL.indexOf('tag='), parent.document.URL.length);
-    const tagStr = number.substring(4);
+const tagStr = number.substring(4);
+
+function getURL() {
     
+    const urlElement = document.getElementById("current-url");
+    urlElement.value = "/blog.html?tag=" + tagStr;
+
+}
+function getPost() {
+
+  fetch('/post?tag=' + tagStr).then(response => response.json()).then((posts) => {
+  
     const postElement = document.getElementById('post-container');
     const titleElement = document.getElementById('title-container');
 
@@ -25,7 +34,8 @@ function getPost() {
 }
 
 function getComments() {
-    fetch('/data').then(response => response.json()).then((comments) => {
+
+    fetch('/data?tag=' + tagStr).then(response => response.json()).then((comments) => {
         
         const commentListElement = document.getElementById('comment-list');
         comments.forEach((comment) => {
@@ -35,9 +45,10 @@ function getComments() {
 }
 
 function createCommentElement(comment) {
+    
   const commentElement = document.createElement('li');
   commentElement.className = 'comment';
-  
+
   const nameElement = document.createElement('span');
   nameElement.innerText = comment.name;
   nameElement.className = "username"

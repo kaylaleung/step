@@ -30,25 +30,38 @@ public class PostServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
     Query query = new Query(BLOGPOST).addSort(TIME_PARAM, SortDirection.ASCENDING);
-
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
-
+    String requestTag = request.getParameter(TAG_PARAM);
     ArrayList<BlogPost> posts = new ArrayList<>();
 
-    for (Entity entity : results.asIterable()) {
-      String title = (String) entity.getProperty(TITLE_PARAM);
-      String tag = (String) entity.getProperty(TAG_PARAM);
-      String category = (String) entity.getProperty(CAT_PARAM);
-      String blogpost = (String) entity.getProperty(POST_PARAM);
-      long timestamp = (long) entity.getProperty(TIME_PARAM);
+    if (requestTag == null) {
+      for (Entity entity : results.asIterable()) {
 
-      BlogPost post = new BlogPost(title, tag, category, blogpost, timestamp);
-      posts.add(post);
+        String tag = (String) entity.getProperty(TAG_PARAM);
+        String title = (String) entity.getProperty(TITLE_PARAM);
+        String category = (String) entity.getProperty(CAT_PARAM);
+        String blogpost = (String) entity.getProperty(POST_PARAM);
+        long timestamp = (long) entity.getProperty(TIME_PARAM);
+        BlogPost post = new BlogPost(title, tag, category, blogpost, timestamp);
+          posts.add(post);
+      }
+    }
+    else {
+      for (Entity entity : results.asIterable()) {
+        String tag = (String) entity.getProperty(TAG_PARAM);
+        if (requestTag.equals(tag)) {
+          String title = (String) entity.getProperty(TITLE_PARAM);
+          String category = (String) entity.getProperty(CAT_PARAM);
+          String blogpost = (String) entity.getProperty(POST_PARAM);
+          long timestamp = (long) entity.getProperty(TIME_PARAM);
+          BlogPost post = new BlogPost(title, tag, category, blogpost, timestamp);
+          posts.add(post);
+        }
+      }
     }
 
     String json = convertToJson(posts);
-
     response.setContentType("application/json;");
     response.getWriter().println(json);
 

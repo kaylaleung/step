@@ -36,6 +36,8 @@ public class DataServlet extends HttpServlet {
   private static final String TEXTIN_PARAM = "text-input";
   private static final String NAME_PARAM = "name";
   private static final String TIME_PARAM = "timestamp";
+  private static final String TAG_PARAM = "tag";
+  private static final String URL_PARAM = "current-url";
   private static final String COMMENT = "Comment";
 
   @Override
@@ -44,15 +46,35 @@ public class DataServlet extends HttpServlet {
     Query query = new Query(COMMENT).addSort(TIME_PARAM, SortDirection.DESCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
+    String requestTag = request.getParameter(TAG_PARAM);
     ArrayList<Comment> comments = new ArrayList<>();
 
-    for (Entity entity : results.asIterable()) {
-      String name = (String) entity.getProperty(NAME_PARAM);
-      String text = (String) entity.getProperty(TEXT_PARAM);
-      long timestamp = (long) entity.getProperty(TIME_PARAM);
-      Comment comment = new Comment(name, text, timestamp);
-      comments.add(comment);
+
+    if (requestTag == null) {
+        
+      for (Entity entity : results.asIterable()) {
+        String tag = (String) entity.getProperty(TAG_PARAM);
+        String name = (String) entity.getProperty(NAME_PARAM);
+        String text = (String) entity.getProperty(TEXT_PARAM);
+        long timestamp = (long) entity.getProperty(TIME_PARAM);
+        Comment comment = new Comment(name, text, tag, timestamp);
+          comments.add(comment);
+        }
+      }
+
+    else {
+      for (Entity entity : results.asIterable()) {
+        String tag = (String) entity.getProperty(TAG_PARAM);
+        if (requestTag.equals(tag)) {
+          String name = (String) entity.getProperty(NAME_PARAM);
+          String text = (String) entity.getProperty(TEXT_PARAM);
+          long timestamp = (long) entity.getProperty(TIME_PARAM);
+          Comment comment = new Comment(name, text, tag, timestamp);
+          comments.add(comment);
+        }
+      }
     }
+    
 
     String json = convertToJson(comments);
     response.setContentType("application/json;");
@@ -64,10 +86,13 @@ public class DataServlet extends HttpServlet {
     
     String text = request.getParameter(TEXTIN_PARAM);
     String name = request.getParameter(NAME_PARAM);
+    String url = request.getParameter(URL_PARAM);
+    String tag = url.substring(15);
     long timestamp = System.currentTimeMillis();
 
     Entity commentEntity = new Entity(COMMENT);
     commentEntity.setProperty(TEXT_PARAM, text);
+    commentEntity.setProperty(TAG_PARAM, tag);
     commentEntity.setProperty(TIME_PARAM, timestamp);
     commentEntity.setProperty(NAME_PARAM, name);
 
@@ -75,7 +100,7 @@ public class DataServlet extends HttpServlet {
     datastore.put(commentEntity);
 
     response.setContentType("text/html;");
-    response.sendRedirect("blog.html");
+    response.sendRedirect(url);
   }
 
   private String convertToJson(ArrayList<Comment> comments) {

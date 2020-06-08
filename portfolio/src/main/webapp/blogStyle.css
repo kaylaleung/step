@@ -57,6 +57,6 @@ input[type=submit] {
 }
 
 .writePost {
-  display: none;
+  /* display: none; */
 }
   
