@@ -427,3 +427,20 @@ section .courses {
 .blog-card:hover h3 {
   font-size: 20px;
 }
+
+select {
+  width: 140px;
+  height: 35px;
+  padding: 5px;
+  padding-left: 15px;
+  margin: 20px;
+  border-radius: 4px;
+  box-shadow: 2px 2px 8px #999;
+  background: rgb(248, 246, 246);
+  border: none;
+  display: inline-block;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
