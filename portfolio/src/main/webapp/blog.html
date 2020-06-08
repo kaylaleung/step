@@ -57,25 +57,22 @@
         <div class="info">
           <h2>Blog Title</h2>
           <p> Insert some blog post content here. </p>
-          
           <h2>All Comments</h2>
           <div id="comment-container">
             <ul id="comment-list"></ul>
           </div>
-
           <h2>Leave A Reply</h2>
           <form action="/data" method="POST">
             <div class="inputBox">
               <label for="name">Name</label>
-              <input type="text" id="name" name="name" required="required">
+              <input id="name" type="text" name="name" required>
             </div>
             <div class="inputBox">
               <label for="feedback">Comment</label>
-              <textarea id="feedback" name="text-input" cols ="100" rows="8" maxlength="10000" required="required"></textarea>
+              <textarea id="feedback" name="text-input" cols="100" rows="8" maxlength="10000" required></textarea>
             </div>
             <input type="submit" value="Post a Comment">
           </form>
-          
         </div> 
       </section>
     </div>
