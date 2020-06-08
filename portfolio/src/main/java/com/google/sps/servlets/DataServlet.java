@@ -50,9 +50,7 @@ public class DataServlet extends HttpServlet {
     String requestTag = request.getParameter(TAG_PARAM);
     List<Comment> comments = new ArrayList<>();
 
-
     if (requestTag == null) {
-        
       for (Entity entity : results.asIterable()) {
         String tag = (String) entity.getProperty(TAG_PARAM);
         String name = (String) entity.getProperty(NAME_PARAM);
@@ -60,8 +58,8 @@ public class DataServlet extends HttpServlet {
         long timestamp = (long) entity.getProperty(TIME_PARAM);
         Comment comment = new Comment(name, text, tag, timestamp);
           comments.add(comment);
-        }
       }
+    }
 
     else {
       for (Entity entity : results.asIterable()) {
@@ -75,7 +73,6 @@ public class DataServlet extends HttpServlet {
         }
       }
     }
-    
 
     String json = convertToJson(comments);
     response.setContentType("application/json;");
@@ -84,7 +81,7 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    
+
     String text = request.getParameter(TEXTIN_PARAM);
     String name = request.getParameter(NAME_PARAM);
     String url = request.getParameter(URL_PARAM);

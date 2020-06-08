@@ -1,15 +1,16 @@
 package com.google.sps.servlets;
 
-import com.google.sps.data.BlogPost;
-import com.google.gson.Gson;
-import java.util.ArrayList;
-import java.io.IOException;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.gson.Gson;
+import com.google.sps.data.BlogPost;
+import java.util.ArrayList;
+import java.util.List;
+import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,18 +34,17 @@ public class PostServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
     String requestTag = request.getParameter(TAG_PARAM);
-    ArrayList<BlogPost> posts = new ArrayList<>();
+    List<BlogPost> posts = new ArrayList<>();
 
     if (requestTag == null) {
       for (Entity entity : results.asIterable()) {
-
         String tag = (String) entity.getProperty(TAG_PARAM);
         String title = (String) entity.getProperty(TITLE_PARAM);
         String category = (String) entity.getProperty(CAT_PARAM);
         String blogpost = (String) entity.getProperty(POST_PARAM);
         long timestamp = (long) entity.getProperty(TIME_PARAM);
         BlogPost post = new BlogPost(title, tag, category, blogpost, timestamp);
-          posts.add(post);
+        posts.add(post);
       }
     }
     else {
@@ -90,8 +90,8 @@ public class PostServlet extends HttpServlet {
     response.sendRedirect("blog.html");
   }
 
-  private String convertToJson(ArrayList<BlogPost> posts) {
+  private String convertToJson(List<BlogPost> posts) {
       Gson gson = new Gson();
       return gson.toJson(posts);
   }
-} 
+}
