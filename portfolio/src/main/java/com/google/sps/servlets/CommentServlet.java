@@ -19,7 +19,7 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
-import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.gson.Gson;
 import com.google.sps.data.Comment;
 import java.util.ArrayList;
@@ -30,8 +30,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/data")
-public class DataServlet extends HttpServlet {
+@WebServlet("/comment")
+public class CommentServlet extends HttpServlet {
 
   private static final String TEXT_PARAM = "text";
   private static final String TEXTIN_PARAM = "text-input";
@@ -45,13 +45,15 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-    Query query = new Query(COMMENT).addSort(TIME_PARAM, SortDirection.DESCENDING);
+    String requestTag = request.getParameter(TAG_PARAM);
+    Query.FilterPredicate filter = new Query.FilterPredicate(TAG_PARAM, FilterOperator.EQUAL, requestTag);
+    Query query = new Query(COMMENT).setFilter(filter);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
-    String requestTag = request.getParameter(TAG_PARAM);
+    
     List<Comment> comments = new ArrayList<>();
 
-    if (requestTag == null) {
+    if (requestTag != null) {
       for (Entity entity : results.asIterable()) {
         String tag = (String) entity.getProperty(TAG_PARAM);
         String name = (String) entity.getProperty(NAME_PARAM);
@@ -59,19 +61,6 @@ public class DataServlet extends HttpServlet {
         long timestamp = (long) entity.getProperty(TIME_PARAM);
         Comment comment = new Comment(name, text, tag, timestamp);
         comments.add(comment);
-      }
-    }
-
-    else {
-      for (Entity entity : results.asIterable()) {
-        String tag = (String) entity.getProperty(TAG_PARAM);
-        if (requestTag.equals(tag)) {
-          String name = (String) entity.getProperty(NAME_PARAM);
-          String text = (String) entity.getProperty(TEXT_PARAM);
-          long timestamp = (long) entity.getProperty(TIME_PARAM);
-          Comment comment = new Comment(name, text, tag, timestamp);
-          comments.add(comment);
-        }
       }
     }
 

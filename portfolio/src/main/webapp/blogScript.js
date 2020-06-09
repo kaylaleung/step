@@ -30,7 +30,7 @@ function getPost() {
 }
 
 function getComments() {
-    fetch('/data?tag=' + tagStr).then(response => response.json()).then((comments) => {
+    fetch('/comment?tag=' + tagStr).then(response => response.json()).then((comments) => {
       const commentListElement = document.getElementById('comment-list');
       for (comment of comments) {
         commentListElement.appendChild(createCommentElement(comment));
