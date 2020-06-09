@@ -4,6 +4,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         toggleActiveSection(tab);
     });
     setLogin();
+    createMap();
 });
 
 function toggleActiveSection(tab) {
@@ -26,12 +27,36 @@ function setLogin() {
     if ("" === log.logoutUrl) {
       login.href = log.loginUrl;
       login.innerHTML = '<i class="fas fa-user-lock"></i>Login';
-      // console.log("logged out, now set button to log in");
     }
     else {
       login.href = log.logoutUrl;
       login.innerHTML = '<i class="fas fa-user-lock"></i>Logout';
-      // console.log("logged in, now set button to log out");
     }
+  });
+}
+
+function createMap() {
+  var cmu = {lat: 40.443378, lng: -79.944404};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 18,
+    center: cmu,
+    mapTypeId: 'satellite',
+    tilt: 45
+  });
+
+  marker = new google.maps.Marker({
+    map: map,
+    draggable: true,
+    animation: google.maps.Animation.DROP,
+    position: cmu
+  });
+
+  var infowindow = new google.maps.InfoWindow({
+    content: 'Carnegie Mellon University: School of Computer Science',
+    maxWidth: 400
+  });
+
+  marker.addListener('click', function() {
+    infowindow.open(map, marker);
   });
 }
