@@ -8,7 +8,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
 });
 
 function toggleActiveSection(tab) {
-
   let elems = document.querySelector('.active');
   if (elems != null) {
       elems.classList.remove('active');

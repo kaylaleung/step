@@ -13,7 +13,6 @@ function getURL() {
 }
 
 function getPost() {
-
   fetch('/post?tag=' + tagStr).then(response => response.json()).then((posts) => {  
     const postElement = document.getElementById('post-container');
     const titleElement = document.getElementById('title-container');
