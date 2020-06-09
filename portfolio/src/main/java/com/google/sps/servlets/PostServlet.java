@@ -5,7 +5,7 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
-import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.gson.Gson;
 import com.google.sps.data.BlogPost;
 import java.util.ArrayList;
@@ -30,35 +30,28 @@ public class PostServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-    Query query = new Query(BLOGPOST).addSort(TIME_PARAM, SortDirection.ASCENDING);
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    PreparedQuery results = datastore.prepare(query);
+    Query query;
     String requestTag = request.getParameter(TAG_PARAM);
-    List<BlogPost> posts = new ArrayList<>();
 
     if (requestTag == null) {
-      for (Entity entity : results.asIterable()) {
-        String tag = (String) entity.getProperty(TAG_PARAM);
-        String title = (String) entity.getProperty(TITLE_PARAM);
-        String category = (String) entity.getProperty(CAT_PARAM);
-        String blogpost = (String) entity.getProperty(POST_PARAM);
-        long timestamp = (long) entity.getProperty(TIME_PARAM);
-        BlogPost post = new BlogPost(title, tag, category, blogpost, timestamp);
-        posts.add(post);
-      }
+      query = new Query(BLOGPOST);
+    } else {
+      Query.FilterPredicate filter = new Query.FilterPredicate(TAG_PARAM, FilterOperator.EQUAL, requestTag);
+      query = new Query(BLOGPOST).setFilter(filter);
     }
-    else {
-      for (Entity entity : results.asIterable()) {
-        String tag = (String) entity.getProperty(TAG_PARAM);
-        if (requestTag.equals(tag)) {
-          String title = (String) entity.getProperty(TITLE_PARAM);
-          String category = (String) entity.getProperty(CAT_PARAM);
-          String blogpost = (String) entity.getProperty(POST_PARAM);
-          long timestamp = (long) entity.getProperty(TIME_PARAM);
-          BlogPost post = new BlogPost(title, tag, category, blogpost, timestamp);
-          posts.add(post);
-        }
-      }
+    
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
+    List<BlogPost> posts = new ArrayList<>();
+
+    for (Entity entity : results.asIterable()) {
+      String tag = (String) entity.getProperty(TAG_PARAM);
+      String title = (String) entity.getProperty(TITLE_PARAM);
+      String category = (String) entity.getProperty(CAT_PARAM);
+      String blogpost = (String) entity.getProperty(POST_PARAM);
+      long timestamp = (long) entity.getProperty(TIME_PARAM);
+      BlogPost post = new BlogPost(title, tag, category, blogpost, timestamp);
+      posts.add(post);
     }
 
     String json = convertToJson(posts);
