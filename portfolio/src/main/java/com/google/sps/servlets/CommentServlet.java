@@ -44,7 +44,6 @@ public class CommentServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
     String requestTag = request.getParameter(TAG_PARAM);
     Query.FilterPredicate filter = new Query.FilterPredicate(TAG_PARAM, FilterOperator.EQUAL, requestTag);
     Query query = new Query(COMMENT).setFilter(filter);
@@ -71,7 +70,6 @@ public class CommentServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
     String text = request.getParameter(TEXTIN_PARAM);
     String name = request.getParameter(NAME_PARAM);
     String url = request.getParameter(URL_PARAM);

@@ -11,8 +11,8 @@ function getBlogs() {
     fetch('/post').then(response => response.json()).then((posts) => {
       const blogListElement = document.getElementById('blog-posts');     
       const selectedElement = document.getElementById('cat-select');
-
       blogListElement.innerHTML = '';  
+
       for (post of posts) {
         if (selectedElement.value === 'All') {
             blogListElement.appendChild(createBlogElement(post));
@@ -30,8 +30,8 @@ function createBlogElement(post) {
 
   const imgElement = document.createElement('img');
   imgElement.src = 'images/ai.jpg';
-  imgElement.width='300';
-  imgElement.height='200';
+  imgElement.width= '300';
+  imgElement.height= '200';
 
   const contentElement = document.createElement('div');
   contentElement.className = 'content';
