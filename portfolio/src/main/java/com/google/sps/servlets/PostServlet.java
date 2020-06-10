@@ -6,6 +6,7 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.SortDirection;	
 import com.google.gson.Gson;
 import com.google.sps.data.BlogPost;
 import java.util.ArrayList;
@@ -34,10 +35,11 @@ public class PostServlet extends HttpServlet {
     String requestTag = request.getParameter(TAG_PARAM);
 
     if (requestTag == null) {
-      query = new Query(BLOGPOST);
-    } else {
+      query = new Query(BLOGPOST).addSort(TIME_PARAM, SortDirection.DESCENDING);
+    } 
+    else {
       Query.FilterPredicate filter = new Query.FilterPredicate(TAG_PARAM, FilterOperator.EQUAL, requestTag);
-      query = new Query(BLOGPOST).setFilter(filter);
+      query = new Query(BLOGPOST).setFilter(filter).addSort(TIME_PARAM, SortDirection.DESCENDING);
     }
     
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
