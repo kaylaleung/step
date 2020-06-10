@@ -18,7 +18,6 @@ function getPost() {
     const titleElement = document.getElementById('title-container');
     postElement.innerHTML = '';
     titleElement.innerHTML ='';
-
     for (post of posts) {
       if ((post.tag) === tagStr) {
         postElement.append(post.blogpost);
@@ -29,12 +28,12 @@ function getPost() {
 }
 
 function getComments() {
-    fetch('/comment?tag=' + tagStr).then(response => response.json()).then((comments) => {
-      const commentListElement = document.getElementById('comment-list');
-      for (comment of comments) {
-        commentListElement.appendChild(createCommentElement(comment));
-      }
-    });
+  fetch('/comment?tag=' + tagStr).then(response => response.json()).then((comments) => {
+    const commentListElement = document.getElementById('comment-list');
+    for (comment of comments) {
+      commentListElement.appendChild(createCommentElement(comment));
+    }
+  });
 }
 
 function createCommentElement(comment) {

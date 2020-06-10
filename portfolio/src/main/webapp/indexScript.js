@@ -1,6 +1,5 @@
 window.addEventListener('DOMContentLoaded', (event) => {
     getBlogs();
-
     const selectElement = document.getElementById('cat-select');     
     selectElement.addEventListener('change', function() {
       getBlogs();
@@ -8,30 +7,26 @@ window.addEventListener('DOMContentLoaded', (event) => {
 });
 
 function getBlogs() {
-    fetch('/post').then(response => response.json()).then((posts) => {
-      const blogListElement = document.getElementById('blog-posts');     
-      const selectedElement = document.getElementById('cat-select');
-      blogListElement.innerHTML = '';  
-
-      for (post of posts) {
-        if (selectedElement.value === 'All') {
-            blogListElement.appendChild(createBlogElement(post));
-        }
-        else if (post.category === selectedElement.value) {
-            blogListElement.appendChild(createBlogElement(post));
-        }
+  fetch('/post').then(response => response.json()).then((posts) => {
+    const blogListElement = document.getElementById('blog-posts');     
+    const selectedElement = document.getElementById('cat-select');
+    blogListElement.innerHTML = '';  
+    for (post of posts) {
+      if ((selectedElement.value === 'All') || (post.category === selectedElement.value)) {
+          blogListElement.appendChild(createBlogElement(post));
       }
-    });
-  }
-  
+    }
+  });
+}
+
 function createBlogElement(post) {
   const cardElement = document.createElement('div');
   cardElement.className = 'blog-card';
 
   const imgElement = document.createElement('img');
   imgElement.src = 'images/ai.jpg';
-  imgElement.width= '300';
-  imgElement.height= '200';
+  imgElement.width = '300';
+  imgElement.height = '200';
 
   const contentElement = document.createElement('div');
   contentElement.className = 'content';
