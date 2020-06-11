@@ -72,7 +72,7 @@ function setAdmin() {
   user.style.display = 'none';
   admin.style.display = 'block';
   fetch('/auth').then(response => response.json()).then((log) => {  
-    if ("" === log.logoutUrl || log.userEmail !== "kaylamyhome@gmail.com") {
+    if ("" === log.logoutUrl || log.email !== "Kaylamyhome@gmail.com") {
       admin.innerHTML = '<h1> Not Authorized </h1>';
     }
   });
