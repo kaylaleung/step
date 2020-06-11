@@ -76,14 +76,14 @@ public class CommentServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String requestTag = request.getParameter(TAG_PARAM);
-    Query.FilterPredicate filter = new Query.FilterPredicate(TAG_PARAM, FilterOperator.EQUAL, requestTag);
-    Query query = new Query(COMMENT).setFilter(filter).addSort(TIME_PARAM, SortDirection.DESCENDING);
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    PreparedQuery results = datastore.prepare(query);
-    
     List<Comment> comments = new ArrayList<>();
 
     if (requestTag != null) {
+      Query.FilterPredicate filter = new Query.FilterPredicate(TAG_PARAM, FilterOperator.EQUAL, requestTag);
+      Query query = new Query(COMMENT).setFilter(filter).addSort(TIME_PARAM, SortDirection.DESCENDING);
+      DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+      PreparedQuery results = datastore.prepare(query);
+
       for (Entity entity : results.asIterable()) {
         String tag = (String) entity.getProperty(TAG_PARAM);
         String name = (String) entity.getProperty(NAME_PARAM);
