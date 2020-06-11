@@ -47,6 +47,7 @@
               <li class="tab"><a href="/index.html#experience"><i class="fas fa-address-card"></i>Experience</a></li>
               <li class="tab"><a href="/index.html#projects"><i class="fas fa-project-diagram"></i>Projects</a></li>
               <li class="tab"><a href="/index.html#blog" class="active"><i class="fas fa-blog"></i>Blog</a></li>
+              <li class="tab"><a id="auth" href=""><i class="fas fa-user"></i>Login</a></li>
           </ul>
         </div>
     </div>
@@ -55,28 +56,31 @@
     <div class="menu">
       <section class="banner">
         <div class="info">
-          <h2 id="title-container">Blog Title</h2>
-          <div id="post-container"></div>
-          <h2>All Comments</h2>
-          <div id="comment-container">
-            <ul id="comment-list"></ul>
-          </div>
-          <h2>Leave a Reply</h2>
-          <form action="/data" method="POST">
-            <div class="inputBox">
-              <label for="name">Name</label>
-              <input id="name" type="text" name="name" required>
+          <div id="seePost"> 
+            <h2 id="title-container">Blog Title</h2>
+            <div id="post-container"></div>
+            <h2>All Comments</h2>
+            <div id="comment-container">
+              <ul id="comment-list"></ul>
             </div>
-            <div class="inputBox">
-              <label for="feedback">Comment</label>
-              <textarea id="feedback" name="text-input" cols="100" rows="8" maxlength="10000" required></textarea>
-            </div>
-            <div class="inputBox">
-              <input type="hidden" name="current-url"  id="current-url" value="">
-            </div>
-            <input type="submit" value="Post a Comment">
-          </form>
-          <div class="writePost"> 
+            <h2>Leave a Reply</h2>
+            <form action="/data" method="POST">
+              <div class="inputBox">
+                <label for="name">Name</label>
+                <input id="name" type="text" name="name" required>
+              </div>
+              <div class="inputBox">
+                <label for="feedback">Comment</label>
+                <textarea id="feedback" name="text-input" cols="100" rows="8" maxlength="10000" required></textarea>
+              </div>
+              <div class="inputBox">
+                <input type="hidden" name="current-url"  id="current-url" value="">
+              </div>
+              <input type="submit" value="Post a Comment">
+            </form>
+         </div>
+          <div id="writePost"> 
+            <h2>Write a Post</h2>
             <form action="/post" method="POST">
               <div class="inputBox">
                 <label for="title">Title</label>

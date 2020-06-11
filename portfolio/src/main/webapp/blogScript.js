@@ -1,11 +1,16 @@
+const number = parent.document.URL.substring(parent.document.URL.indexOf('tag='), parent.document.URL.length);
+const tagStr = number.substring(4);
+
 window.addEventListener('DOMContentLoaded', (event) => {
+  if (tagStr !== "admin") {
     getURL();
     getPost();
     getComments();
+  }
+  else {
+    setAdmin();
+  }
 });
-
-const number = parent.document.URL.substring(parent.document.URL.indexOf('tag='), parent.document.URL.length);
-const tagStr = number.substring(4);
 
 function getURL() {
     const urlElement = document.getElementById('current-url');
@@ -13,7 +18,6 @@ function getURL() {
 }
 
 function getPost() {
-
   fetch('/post?tag=' + tagStr).then(response => response.json()).then((posts) => {  
     const postElement = document.getElementById('post-container');
     const titleElement = document.getElementById('title-container');
@@ -60,4 +64,16 @@ function createCommentElement(comment) {
   commentElement.appendChild(textElement);
 
   return commentElement;
+}
+
+function setAdmin() {
+  const admin = document.getElementById('writePost');
+  const user = document.getElementById('seePost');
+  user.style.display = 'none';
+  admin.style.display = 'block';
+  fetch('/auth').then(response => response.json()).then((log) => {  
+    if ("" === log.logoutUrl || log.userEmail !== "kaylamyhome@gmail.com") {
+      admin.innerHTML = '<h1> Not Authorized </h1>';
+    }
+  });
 }
