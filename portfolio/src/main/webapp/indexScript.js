@@ -1,9 +1,9 @@
 window.addEventListener('DOMContentLoaded', (event) => {
+  getBlogs();
+  const selectElement = document.getElementById('cat-select');     
+  selectElement.addEventListener('change', function() {
     getBlogs();
-    const selectElement = document.getElementById('cat-select');     
-    selectElement.addEventListener('change', function() {
-      getBlogs();
-     });
+  });
 });
 
 function getBlogs() {
