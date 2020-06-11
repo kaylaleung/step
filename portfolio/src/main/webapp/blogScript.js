@@ -4,8 +4,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     getComments();
 });
 
-const number = parent.document.URL.substring(parent.document.URL.indexOf('tag='), parent.document.URL.length);
-const tagStr = number.substring(4);
+const tagIndx = parent.document.URL.substring(parent.document.URL.indexOf('tag='), parent.document.URL.length);
+const tagStr = tagIndx.substring(4);
 
 function getURL() {
     const urlElement = document.getElementById('current-url');
@@ -17,9 +17,9 @@ function getPost() {
     const postElement = document.getElementById('post-container');
     const titleElement = document.getElementById('title-container');
     postElement.innerHTML = '';
-    titleElement.innerHTML ='';
+    titleElement.innerHTML = '';
     for (post of posts) {
-      if ((post.tag) === tagStr) {
+      if (post.tag === tagStr) {
         postElement.append(post.blogpost);
         titleElement.append(post.title);
       }

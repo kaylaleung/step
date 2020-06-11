@@ -12,7 +12,7 @@ function getBlogs() {
     const selectedElement = document.getElementById('cat-select');
     blogListElement.innerHTML = '';  
     for (post of posts) {
-      if ((selectedElement.value === 'All') || (post.category === selectedElement.value)) {
+      if (selectedElement.value === 'All'|| post.category === selectedElement.value) {
           blogListElement.appendChild(createBlogElement(post));
       }
     }
@@ -35,7 +35,7 @@ function createBlogElement(post) {
   titleElement.innerText = post.title;
 
   const blurbElement = document.createElement('p');
-  blurbElement.innerText = (post.blogpost).length < 25 ? post.blogpost : post.blogpost.substring(0,200);
+  blurbElement.innerText = post.blogpost.length < 200 ? post.blogpost : post.blogpost.substring(0,200);
 
   contentElement.appendChild(titleElement);
   contentElement.appendChild(blurbElement);

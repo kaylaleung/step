@@ -4,7 +4,7 @@ form {
   line-height: 25px;
 }
 
-.inputBox {
+.input-box {
   padding-bottom: 20px;
 }
 
@@ -56,6 +56,6 @@ input[type=submit] {
   line-height: 25px;
 }
 
-.writePost {
+.write-post {
   display: none;
 }
