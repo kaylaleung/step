@@ -4,8 +4,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     getComments();
 });
 
-const tagIndx = parent.document.URL.substring(parent.document.URL.indexOf('tag='), parent.document.URL.length);
-const tagStr = tagIndx.substring(4);
+const tagStr = new URL(document.URL).searchParams.get('tag');
 
 function getURL() {
     const urlElement = document.getElementById('current-url');

@@ -35,7 +35,7 @@ function createBlogElement(post) {
   titleElement.innerText = post.title;
 
   const blurbElement = document.createElement('p');
-  blurbElement.innerText = post.blogpost.length < 200 ? post.blogpost : post.blogpost.substring(0,200);
+  blurbElement.innerText = post.blogpost.substring(0, 200);
 
   contentElement.appendChild(titleElement);
   contentElement.appendChild(blurbElement);
