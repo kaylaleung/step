@@ -20,37 +20,41 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/post")
 public class PostServlet extends HttpServlet {
 
-  /** The post param is a string property identifier for setting and retrieving
-   * the body of textual content stored for a blog post made by the user. */
+  /** 
+   * Text param for setting and retrieving blog post text
+   */
   private static final String POST_PARAM = "blogpost";
 
-  /** The postin param is a unique string identifier for retrieving the blog 
-   * post text from a user through the form input in POST requests */
+  /** 
+   * Postin param for retrieving blog post from form input
+   */
   private static final String POSTIN_PARAM = "blog-input";
   
-  /** The title param is string property identifier for setting and retrieving
-   * the title of the blog post created. If not included in a GET request, no 
-   * blog title will be returned. */
+  /** 
+   * Title param for setting and retrieving the title of the blog post
+   */
   private static final String TITLE_PARAM = "title";
 
-  /** The time param is a string property identifier for the time of submission 
-   * upon a POST request for a submitted blog post. It is also the property 
-   * used to sort posts in most recently submitted order */
+   /** 
+   * Time param for the time of submission of a blog post. Used
+   * to sort blog post in most recently submitted order 
+   */
   private static final String TIME_PARAM = "timestamp";
 
-  /** The category pram is a string property identifier for the category of a 
-   * blog post that will be retrieved via GET requests for filtering post by
-   * category type. Many posts may have the same category */
+  /** 
+   * Category param for the filtering blog post by category type 
+   */
   private static final String CAT_PARAM = "category";
 
-  /** The tag param is a string property identifier for blog posts. It is the 
-   * property used to determine which blog posts are displayed with their 
-   * corresponding blog posts. If not included in a GET request, no blog posts 
-   * will be returned. Tags for each post must be unique */
+  /** 
+   * Tag param for blog posts. Used to determine which blog posts 
+   * are displayed with their corresponding blog posts. 
+   */
   private static final String TAG_PARAM = "tag";
 
-  /** The blogpost param specifices the string identifier for the entity class 
-   * that the GET request queries */
+  /** 
+   * Blogpost param specifies the entity class queried for 
+   */
   private static final String BLOGPOST = "BlogPost";
 
   @Override

@@ -34,43 +34,49 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/comment")
 public class CommentServlet extends HttpServlet {
 
-  /** The text param is a string property identifier for setting and retrieving
-   * the body of textual content stored for a comment made by the user. */
+  /** 
+   * Text param for setting and retrieving comment text
+   */
   private static final String TEXT_PARAM = "text";
 
-  /** The textin param is a unique string identifier for retrieving the comment
-   * text from a user through the form input in POST requests */
+  /** 
+   * Textin param for retrieving comment from form input
+   */
   private static final String TEXTIN_PARAM = "text-input";
 
-  /** The name param is string property identifier for setting and retrieving
-   * the name of the user associated with a submitted comment */
+  /** 
+   * Name param for setting and retrieving the name of the 
+   * user submitting a comment
+   */
   private static final String NAME_PARAM = "name";
 
-  /** The time param is a string property identifier for the time of submission 
-   * upon a POST request for a submitted comment. It is also the property used
-   * to sort comments in most recently submitted order */
+  /** 
+   * Time param for the time of submission of a comment. Used
+   * to sort comments in most recently submitted order 
+   */
   private static final String TIME_PARAM = "timestamp";
   
-  /** The tag param is a string property identifier for comments. It is the 
-   * property used to determine which comments are displayed with their 
-   * corresponding blog posts. If not included in a GET request, no comments
-   * will be returned. */
+  /** 
+   * Tag param for comments. Used to determine which comments are 
+   * displayed with their  corresponding blog posts
+   */
   private static final String TAG_PARAM = "tag";
 
-  /** The url param is a string identifier for the page url that the associated 
-   * comments will be posted to and where the user will be redirected to after 
-   * posting a comment. If not included POST request, user will not be 
-   * redirected to the original page after submitting a comment */
+  /** 
+   * Url param for the page url that comments will be posted to and where the 
+   * user will be redirected to after posting a comment. 
+   */
   private static final String URL_PARAM = "current-url";
 
-  /** The comment param specifices the string identifier for the entity class 
-   * that the GET request queries */
+  /** 
+   * Comment param specifies the entity class queried for 
+   */
   private static final String COMMENT = "Comment";
 
-  /** The path len param specifices the integer identifier for the length of
-   * the blog url path up until its tag specifier. If not included in the POST
-   * request, the blog post tag cannot be retrieved for subsequent association
-   * with the submitted comment */
+  /** 
+   * The path len param specifies length of the blog url path 
+   * up until its tag specifier. 
+   */
   private static final int PATH_LEN = 15;
 
   @Override
