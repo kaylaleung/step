@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Kayla Leung</title>
 
-    <link rel="stylesheet" href="blogStyle.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="blogStyle.css">
     <link rel="stylesheet" href="font.css">
 
     <script src="script.js"></script>
@@ -14,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
   </head>
+  
   <body>
 
     <!-- Toggle Side View -->
@@ -41,37 +42,52 @@
 
         <div class="menu">
           <ul>
-              <li class="tab"><a href="/index.html#home"><i class="fas fa-home"></i>Home</a></li>
-              <li class="tab"><a href="/index.html#education"><i class="fas fa-user"></i>Education</a></li>
-              <li class="tab"><a href="/index.html#experience"><i class="fas fa-address-card"></i>Experience</a></li>
-              <li class="tab"><a href="/index.html#projects"><i class="fas fa-project-diagram"></i>Projects</a></li>
-              <li class="tab"><a href="/index.html#blog" class="active"><i class="fas fa-blog"></i>Blog</a></li>
+            <li class="tab"><a href="/index.html#home"><i class="fas fa-home"></i>Home</a></li>
+            <li class="tab"><a href="/index.html#education"><i class="fas fa-user"></i>Education</a></li>
+            <li class="tab"><a href="/index.html#experience"><i class="fas fa-address-card"></i>Experience</a></li>
+            <li class="tab"><a href="/index.html#projects"><i class="fas fa-project-diagram"></i>Projects</a></li>
+            <li class="tab"><a href="/index.html#blog" class="active"><i class="fas fa-blog"></i>Blog</a></li>
           </ul>
         </div>
     </div>
 
     <!-- Main Content Section -->
-
     <div class="menu">
       <section class="banner">
         <div class="info">
-          <h2>Blog Title</h2>
-          <p> Insert some blog post content here. </p>
+          <h2 id="title-container">Blog Title</h2>
+          <div id="post-container"></div>
           <h2>All Comments</h2>
           <div id="comment-container">
             <ul id="comment-list"></ul>
           </div>
-          <h2>Leave A Reply</h2>
-          <form action="/data" method="POST">
-            <div class="inputBox">
+          <h2>Leave a Reply</h2>
+          <form action="/comment" method="POST">
+            <div class="input-box">
               <label for="name">Name</label>
               <input id="name" type="text" name="name" required>
             </div>
-            <div class="inputBox">
+            <div class="input-box">
               <label for="feedback">Comment</label>
               <textarea id="feedback" name="text-input" cols="100" rows="8" maxlength="10000" required></textarea>
             </div>
+            <input type="hidden" name="current-id" id="current-id" value="">
             <input type="submit" value="Post a Comment">
+          </form>
+          <form class="write-post" action="/post" method="POST">
+            <div class="input-box">
+              <label for="title">Title</label>
+              <input type="text" id="title" name="title">
+            </div>
+            <div class="input-box">
+              <label for="category">Category</label>
+              <input type="text" id="category" name="category">
+            </div>
+            <div class="input-box">
+              <label for="post">Write Blog Post</label>
+              <textarea id="post" name="blog-input" cols ="100" rows="8"></textarea>
+            </div>
+            <input type="submit" value="Submit Blog Post">
           </form>
         </div> 
       </section>
