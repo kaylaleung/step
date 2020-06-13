@@ -1,40 +1,43 @@
+const role = new URL(document.URL).searchParams.get('user');
+const id = new URL(document.URL).searchParams.get('id');
+
 window.addEventListener('DOMContentLoaded', (event) => {
-    getURL();
+  const user = document.getElementById('see-post');
+  const admin = document.getElementById('write-post');
+  if (role !== "admin" && id !== null) {
+    getID();
     getPost();
     getComments();
+    user.style.display = 'block';
+  }
+  else {
+    setAdmin(admin);
+  }
 });
 
-const number = parent.document.URL.substring(parent.document.URL.indexOf('tag='), parent.document.URL.length);
-const tagStr = number.substring(4);
-
-function getURL() {
-    const urlElement = document.getElementById('current-url');
-    urlElement.value = '/blog.html?tag=' + tagStr;
+function getID() {
+    const idElement = document.getElementById('current-id');
+    idElement.value = id;
 }
 
 function getPost() {
-  fetch('/post?tag=' + tagStr).then(response => response.json()).then((posts) => {  
+  fetch('/post?id=' + id).then(response => response.json()).then((post) => {  
     const postElement = document.getElementById('post-container');
     const titleElement = document.getElementById('title-container');
+    titleElement.innerHTML = '';
     postElement.innerHTML = '';
-    titleElement.innerHTML ='';
-
-    for (post of posts) {
-      if ((post.tag) === tagStr) {
-        postElement.append(post.blogpost);
-        titleElement.append(post.title);
-      }
-    }
+    postElement.append(post[0].blogpost);
+    titleElement.append(post[0].title);
   });
 }
 
 function getComments() {
-    fetch('/comment?tag=' + tagStr).then(response => response.json()).then((comments) => {
-      const commentListElement = document.getElementById('comment-list');
-      for (comment of comments) {
-        commentListElement.appendChild(createCommentElement(comment));
-      }
-    });
+  fetch('/comment?id=' + id).then(response => response.json()).then((comments) => {
+    const commentListElement = document.getElementById('comment-list');
+    for (comment of comments) {
+      commentListElement.appendChild(createCommentElement(comment));
+    }
+  });
 }
 
 function createCommentElement(comment) {
@@ -59,4 +62,13 @@ function createCommentElement(comment) {
   commentElement.appendChild(textElement);
 
   return commentElement;
+}
+
+function setAdmin(admin) {
+  fetch('/auth').then(response => response.json()).then((log) => {  
+    if ("" === log.logoutUrl || log.email !== "Kaylamyhome@gmail.com") {
+      admin.innerHTML = '<h1> Not Authorized </h1>';
+    }
+  });
+  admin.style.display = 'block';
 }
