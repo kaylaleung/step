@@ -1,12 +1,12 @@
 window.addEventListener('DOMContentLoaded', (event) => {
-  getBlogs();
+  getAllBlogs();
   const selectElement = document.getElementById('cat-select');     
   selectElement.addEventListener('change', function() {
-    getBlogs();
+    getAllBlogs();
   });
 });
 
-function getBlogs() {
+function getAllBlogs() {
   fetch('/post').then(response => response.json()).then((posts) => {
     const blogListElement = document.getElementById('blog-posts');     
     const selectedElement = document.getElementById('cat-select');
@@ -42,7 +42,7 @@ function createBlogElement(post) {
 
   const linkElement = document.createElement('a');
   linkElement.className = 'link';
-  linkElement.href = '/blog.html?tag=' + post.tag;
+  linkElement.href = '/blog.html?id=' + post.id;
   linkElement.innerText = 'Read More';
 
   cardElement.appendChild(imgElement);

@@ -4,30 +4,26 @@ window.addEventListener('DOMContentLoaded', (event) => {
     getComments();
 });
 
-const tagStr = new URL(document.URL).searchParams.get('tag');
+const id = new URL(document.URL).searchParams.get('id');
 
 function getURL() {
-    const urlElement = document.getElementById('current-url');
-    urlElement.value = '/blog.html?tag=' + tagStr;
+    const urlElement = document.getElementById('current-id');
+    urlElement.value = id;
 }
 
 function getPost() {
-  fetch('/post?tag=' + tagStr).then(response => response.json()).then((posts) => {  
+  fetch('/post?id=' + id).then(response => response.json()).then((post) => {  
     const postElement = document.getElementById('post-container');
     const titleElement = document.getElementById('title-container');
-    postElement.innerHTML = '';
     titleElement.innerHTML = '';
-    for (post of posts) {
-      if (post.tag === tagStr) {
-        postElement.append(post.blogpost);
-        titleElement.append(post.title);
-      }
-    }
+    postElement.innerHTML = '';
+    postElement.append(post[0].blogpost);
+    titleElement.append(post[0].title);
   });
 }
 
 function getComments() {
-  fetch('/comment?tag=' + tagStr).then(response => response.json()).then((comments) => {
+  fetch('/comment?id=' + id).then(response => response.json()).then((comments) => {
     const commentListElement = document.getElementById('comment-list');
     for (comment of comments) {
       commentListElement.appendChild(createCommentElement(comment));

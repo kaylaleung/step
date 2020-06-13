@@ -3,6 +3,8 @@ package com.google.sps.servlets;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterOperator;
@@ -47,10 +49,10 @@ public class PostServlet extends HttpServlet {
   private static final String CAT_PARAM = "category";
 
   /** 
-   * Tag param for blog posts. Used to determine which blog posts 
-   * are displayed with their corresponding blog posts. 
+   * Id param for blog posts. Used to determine which blog posts 
+   * are displayed with their corresponding unique datastore id. 
    */
-  private static final String TAG_PARAM = "tag";
+  private static final String ID_PARAM = "id";
 
   /** 
    * Blogpost param specifies the entity class queried for 
@@ -60,28 +62,27 @@ public class PostServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-    Query query;
-    String requestTag = request.getParameter(TAG_PARAM);
+    Query query = new Query(BLOGPOST).addSort(TIME_PARAM, SortDirection.DESCENDING);
+    String requestStr = request.getParameter(ID_PARAM);
 
-    if (requestTag == null) {
-      query = new Query(BLOGPOST).addSort(TIME_PARAM, SortDirection.DESCENDING);
-    } 
-    else {
-      Query.FilterPredicate filter = new Query.FilterPredicate(TAG_PARAM, FilterOperator.EQUAL, requestTag);
-      query = new Query(BLOGPOST).setFilter(filter).addSort(TIME_PARAM, SortDirection.DESCENDING);
+    if (requestStr != null) {
+      long requestId = Long.valueOf(requestStr);
+      Key keyId = KeyFactory.createKey(BLOGPOST, requestId);
+      Query.FilterPredicate filter = new Query.FilterPredicate("__key__", FilterOperator.EQUAL, keyId);
+      query.setFilter(filter).addSort(TIME_PARAM, SortDirection.DESCENDING);
     }
-    
+
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
     List<BlogPost> posts = new ArrayList<>();
 
     for (Entity entity : results.asIterable()) {
-      String tag = (String) entity.getProperty(TAG_PARAM);
       String title = (String) entity.getProperty(TITLE_PARAM);
+      String id = Long.toString(entity.getKey().getId()); 
       String category = (String) entity.getProperty(CAT_PARAM);
       String blogpost = (String) entity.getProperty(POST_PARAM);
       long timestamp = (long) entity.getProperty(TIME_PARAM);
-      BlogPost post = new BlogPost(title, tag, category, blogpost, timestamp);
+      BlogPost post = new BlogPost(title, id, category, blogpost, timestamp);
       posts.add(post);
     }
 
@@ -93,15 +94,13 @@ public class PostServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     
-    String title = request.getParameter(TITLE_PARAM);
-    String tag = request.getParameter(TAG_PARAM);
-    String category = request.getParameter(CAT_PARAM);
-    String blogpost = request.getParameter(POSTIN_PARAM);
+    String title = isNullOrEmpty(request.getParameter(TITLE_PARAM));
+    String category = isNullOrEmpty(request.getParameter(CAT_PARAM));
+    String blogpost = isNullOrEmpty(request.getParameter(POSTIN_PARAM));
     long timestamp = System.currentTimeMillis();
 
     Entity postEntity = new Entity(BLOGPOST);
     postEntity.setProperty(TITLE_PARAM, title);
-    postEntity.setProperty(TAG_PARAM, tag);
     postEntity.setProperty(CAT_PARAM, category);
     postEntity.setProperty(POST_PARAM, blogpost);
     postEntity.setProperty(TIME_PARAM, timestamp);
@@ -111,6 +110,13 @@ public class PostServlet extends HttpServlet {
 
     response.setContentType("text/html;");
     response.sendRedirect("blog.html");
+  }
+
+  private String isNullOrEmpty(String param) {
+    if (param == null || param.equals("")) {
+      throw new NullPointerException("Null or empty parameter returned");
+    }
+    return param;
   }
 
   private String convertToJson(List<BlogPost> posts) {

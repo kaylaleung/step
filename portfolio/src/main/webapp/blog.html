@@ -62,7 +62,7 @@
             <ul id="comment-list"></ul>
           </div>
           <h2>Leave a Reply</h2>
-          <form action="/data" method="POST">
+          <form action="/comment" method="POST">
             <div class="input-box">
               <label for="name">Name</label>
               <input id="name" type="text" name="name" required>
@@ -71,17 +71,13 @@
               <label for="feedback">Comment</label>
               <textarea id="feedback" name="text-input" cols="100" rows="8" maxlength="10000" required></textarea>
             </div>
-            <input type="hidden" name="current-url"  id="current-url" value="">
+            <input type="hidden" name="current-id" id="current-id" value="">
             <input type="submit" value="Post a Comment">
           </form>
           <form class="write-post" action="/post" method="POST">
             <div class="input-box">
               <label for="title">Title</label>
               <input type="text" id="title" name="title">
-            </div>
-            <div class="input-box">
-              <label for="tag">Tag</label>
-              <input type="text" id="tag" name="tag">
             </div>
             <div class="input-box">
               <label for="category">Category</label>

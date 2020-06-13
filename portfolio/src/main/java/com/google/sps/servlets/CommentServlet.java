@@ -51,53 +51,48 @@ public class CommentServlet extends HttpServlet {
   private static final String NAME_PARAM = "name";
 
   /** 
+   * Id param for retrieving comment for matching blog post id
+   */
+  private static final String ID_PARAM = "id";
+
+  /** 
    * Time param for the time of submission of a comment. Used
    * to sort comments in most recently submitted order 
    */
   private static final String TIME_PARAM = "timestamp";
-  
-  /** 
-   * Tag param for comments. Used to determine which comments are 
-   * displayed with their  corresponding blog posts
-   */
-  private static final String TAG_PARAM = "tag";
 
   /** 
-   * Url param for the page url that comments will be posted to and where the 
-   * user will be redirected to after posting a comment. 
+   * CurID param for the unique page id that comments will be posted to 
    */
-  private static final String URL_PARAM = "current-url";
+  private static final String CURID_PARAM = "current-id";
 
   /** 
    * Comment param specifies the entity class queried for 
    */
   private static final String COMMENT = "Comment";
 
-  /** 
-   * The path len param specifies length of the blog url path 
-   * up until its tag specifier. 
-   */
-  private static final int PATH_LEN = 15;
-
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String requestTag = request.getParameter(TAG_PARAM);
+
+    Query query = new Query(COMMENT).addSort(TIME_PARAM, SortDirection.DESCENDING);
+    String requestStr = request.getParameter(ID_PARAM);
+
+    if (requestStr != null) {
+      Query.FilterPredicate filter = new Query.FilterPredicate(ID_PARAM, FilterOperator.EQUAL, requestStr);
+      query.setFilter(filter).addSort(TIME_PARAM, SortDirection.DESCENDING);
+    }
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
     List<Comment> comments = new ArrayList<>();
 
-    if (requestTag != null) {
-      Query.FilterPredicate filter = new Query.FilterPredicate(TAG_PARAM, FilterOperator.EQUAL, requestTag);
-      Query query = new Query(COMMENT).setFilter(filter).addSort(TIME_PARAM, SortDirection.DESCENDING);
-      DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-      PreparedQuery results = datastore.prepare(query);
-
-      for (Entity entity : results.asIterable()) {
-        String tag = (String) entity.getProperty(TAG_PARAM);
-        String name = (String) entity.getProperty(NAME_PARAM);
-        String text = (String) entity.getProperty(TEXT_PARAM);
-        long timestamp = (long) entity.getProperty(TIME_PARAM);
-        Comment comment = new Comment(name, text, tag, timestamp);
-        comments.add(comment);
-      }
+    for (Entity entity : results.asIterable()) {
+      String name = (String) entity.getProperty(NAME_PARAM);
+      String id = (String) entity.getProperty(ID_PARAM);
+      String text = (String) entity.getProperty(TEXT_PARAM);
+      long timestamp = (long) entity.getProperty(TIME_PARAM);
+      Comment comment = new Comment(name, id, text, timestamp);
+      comments.add(comment);
     }
 
     String json = convertToJson(comments);
@@ -107,23 +102,30 @@ public class CommentServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String text = request.getParameter(TEXTIN_PARAM);
-    String name = request.getParameter(NAME_PARAM);
-    String url = request.getParameter(URL_PARAM);
-    String tag = url.substring(PATH_LEN);
+
+    String id = isNullOrEmpty(request.getParameter(CURID_PARAM));
+    String name = isNullOrEmpty(request.getParameter(NAME_PARAM));
+    String text = isNullOrEmpty(request.getParameter(TEXTIN_PARAM));
     long timestamp = System.currentTimeMillis();
 
     Entity commentEntity = new Entity(COMMENT);
-    commentEntity.setProperty(TEXT_PARAM, text);
-    commentEntity.setProperty(TAG_PARAM, tag);
-    commentEntity.setProperty(TIME_PARAM, timestamp);
     commentEntity.setProperty(NAME_PARAM, name);
+    commentEntity.setProperty(ID_PARAM, id);
+    commentEntity.setProperty(TEXT_PARAM, text);
+    commentEntity.setProperty(TIME_PARAM, timestamp);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
 
     response.setContentType("text/html;");
-    response.sendRedirect(url);
+    response.sendRedirect("/blog.html?id=" + id);
+  }
+
+  private String isNullOrEmpty(String param) {
+    if (param == null || param.equals("")) {
+      throw new NullPointerException("Null or empty parameter returned");
+    }
+    return param;
   }
 
   private String convertToJson(List<Comment> comments) {
