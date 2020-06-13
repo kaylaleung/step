@@ -56,51 +56,40 @@
     <div class="menu">
       <section class="banner">
         <div class="info">
-          <div id="seePost"> 
-            <h2 id="title-container">Blog Title</h2>
-            <div id="post-container"></div>
-            <h2>All Comments</h2>
-            <div id="comment-container">
-              <ul id="comment-list"></ul>
+          <h2 id="title-container">Blog Title</h2>
+          <div id="post-container"></div>
+          <h2>All Comments</h2>
+          <div id="comment-container">
+            <ul id="comment-list"></ul>
+          </div>
+          <h2>Leave a Reply</h2>
+          <form action="/comment" method="POST">
+            <div class="input-box">
+              <label for="name">Name</label>
+              <input id="name" type="text" name="name" required>
             </div>
-            <h2>Leave a Reply</h2>
-            <form action="/data" method="POST">
-              <div class="inputBox">
-                <label for="name">Name</label>
-                <input id="name" type="text" name="name" required>
-              </div>
-              <div class="inputBox">
-                <label for="feedback">Comment</label>
-                <textarea id="feedback" name="text-input" cols="100" rows="8" maxlength="10000" required></textarea>
-              </div>
-              <div class="inputBox">
-                <input type="hidden" name="current-url"  id="current-url" value="">
-              </div>
-              <input type="submit" value="Post a Comment">
-            </form>
-         </div>
-          <div id="writePost"> 
-            <h2>Write a Post</h2>
-            <form action="/post" method="POST">
-              <div class="inputBox">
-                <label for="title">Title</label>
-                <input type="text" id="title" name="title">
-              </div>
-              <div class="inputBox">
-                <label for="tag">Tag</label>
-                <input type="text" id="tag" name="tag">
-              </div>
-              <div class="inputBox">
-                <label for="category">Category</label>
-                <input type="text" id="category" name="category">
-              </div>
-              <div class="inputBox">
-                <label for="post">Write Blog Post</label>
-                <textarea id="post" name="blog-input" cols ="100" rows="8"></textarea>
-              </div>
-              <input type="submit" value="Submit Blog Post">
-            </form>
-          </div>  
+            <div class="input-box">
+              <label for="feedback">Comment</label>
+              <textarea id="feedback" name="text-input" cols="100" rows="8" maxlength="10000" required></textarea>
+            </div>
+            <input type="hidden" name="current-id" id="current-id" value="">
+            <input type="submit" value="Post a Comment">
+          </form>
+         <form class="write-post" action="/post" method="POST">
+          <div class="input-box">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title">
+          </div>
+          <div class="input-box">
+            <label for="category">Category</label>
+            <input type="text" id="category" name="category">
+          </div>
+          <div class="input-box">
+            <label for="post">Write Blog Post</label>
+            <textarea id="post" name="blog-input" cols ="100" rows="8"></textarea>
+          </div>
+          <input type="submit" value="Submit Blog Post">
+        </form>
         </div> 
       </section>
     </div>

@@ -7,7 +7,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
 });
 
 function toggleActiveSection(tab) {
-
   let elems = document.querySelector('.active');
   if (elems != null) {
       elems.classList.remove('active');
@@ -26,12 +25,10 @@ function setLogin() {
     if ("" === log.logoutUrl) {
       login.href = log.loginUrl;
       login.innerHTML = '<i class="fas fa-user-lock"></i>Login';
-      // console.log("logged out, now set button to log in");
     }
     else {
       login.href = log.logoutUrl;
       login.innerHTML = '<i class="fas fa-user-lock"></i>Logout';
-      // console.log("logged in, now set button to log out");
     }
   });
 }

@@ -1,36 +1,32 @@
 window.addEventListener('DOMContentLoaded', (event) => {
-    getBlogs();
-    const selectElement = document.getElementById('cat-select');     
-    selectElement.addEventListener('change', function() {
-      getBlogs();
-     });
+  getAllBlogs();
+  const selectElement = document.getElementById('cat-select');     
+  selectElement.addEventListener('change', function() {
+    getAllBlogs();
+  });
 });
 
-function getBlogs() {
-    fetch('/post').then(response => response.json()).then((posts) => {
-      const blogListElement = document.getElementById('blog-posts');     
-      const selectedElement = document.getElementById('cat-select');
-
-      blogListElement.innerHTML = '';  
-      for (post of posts) {
-        if (selectedElement.value === 'All') {
-            blogListElement.appendChild(createBlogElement(post));
-        }
-        else if (post.category === selectedElement.value) {
-            blogListElement.appendChild(createBlogElement(post));
-        }
+function getAllBlogs() {
+  fetch('/post').then(response => response.json()).then((posts) => {
+    const blogListElement = document.getElementById('blog-posts');     
+    const selectedElement = document.getElementById('cat-select');
+    blogListElement.innerHTML = '';  
+    for (post of posts) {
+      if (selectedElement.value === 'All'|| post.category === selectedElement.value) {
+          blogListElement.appendChild(createBlogElement(post));
       }
-    });
-  }
-  
+    }
+  });
+}
+
 function createBlogElement(post) {
   const cardElement = document.createElement('div');
   cardElement.className = 'blog-card';
 
   const imgElement = document.createElement('img');
   imgElement.src = 'images/ai.jpg';
-  imgElement.width='300';
-  imgElement.height='200';
+  imgElement.width = '300';
+  imgElement.height = '200';
 
   const contentElement = document.createElement('div');
   contentElement.className = 'content';
@@ -39,14 +35,14 @@ function createBlogElement(post) {
   titleElement.innerText = post.title;
 
   const blurbElement = document.createElement('p');
-  blurbElement.innerText = (post.blogpost).length < 25 ? post.blogpost : post.blogpost.substring(0,200);
+  blurbElement.innerText = post.blogpost.substring(0, 200);
 
   contentElement.appendChild(titleElement);
   contentElement.appendChild(blurbElement);
 
   const linkElement = document.createElement('a');
   linkElement.className = 'link';
-  linkElement.href = '/blog.html?tag=' + post.tag;
+  linkElement.href = '/blog.html?id=' + post.id;
   linkElement.innerText = 'Read More';
 
   cardElement.appendChild(imgElement);
