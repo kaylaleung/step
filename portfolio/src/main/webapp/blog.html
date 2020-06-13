@@ -42,12 +42,12 @@
 
         <div class="menu">
           <ul>
-              <li class="tab"><a href="/index.html#home"><i class="fas fa-home"></i>Home</a></li>
-              <li class="tab"><a href="/index.html#education"><i class="fas fa-user"></i>Education</a></li>
-              <li class="tab"><a href="/index.html#experience"><i class="fas fa-address-card"></i>Experience</a></li>
-              <li class="tab"><a href="/index.html#projects"><i class="fas fa-project-diagram"></i>Projects</a></li>
-              <li class="tab"><a href="/index.html#blog" class="active"><i class="fas fa-blog"></i>Blog</a></li>
-              <li class="tab"><a id="auth" href=""><i class="fas fa-user"></i>Login</a></li>
+            <li class="tab"><a href="/index.html#home"><i class="fas fa-home"></i>Home</a></li>
+            <li class="tab"><a href="/index.html#education"><i class="fas fa-user"></i>Education</a></li>
+            <li class="tab"><a href="/index.html#experience"><i class="fas fa-address-card"></i>Experience</a></li>
+            <li class="tab"><a href="/index.html#projects"><i class="fas fa-project-diagram"></i>Projects</a></li>
+            <li class="tab"><a href="/index.html#blog" class="active"><i class="fas fa-blog"></i>Blog</a></li>
+            <li class="tab"><a id="auth" href=""><i class="fas fa-user"></i>Login</a></li>
           </ul>
         </div>
     </div>
@@ -56,26 +56,29 @@
     <div class="menu">
       <section class="banner">
         <div class="info">
-          <h2 id="title-container">Blog Title</h2>
-          <div id="post-container"></div>
-          <h2>All Comments</h2>
-          <div id="comment-container">
-            <ul id="comment-list"></ul>
+          <div id="see-post">
+            <h2 id="title-container">Blog Title</h2>
+            <div id="post-container"></div>
+            <h2>All Comments</h2>
+            <div id="comment-container">
+              <ul id="comment-list"></ul>
+            </div>
+            <h2>Leave a Reply</h2>
+            <form action="/comment" method="POST">
+              <div class="input-box">
+                <label for="name">Name</label>
+                <input id="name" type="text" name="name" required>
+              </div>
+              <div class="input-box">
+                <label for="feedback">Comment</label>
+                <textarea id="feedback" name="text-input" cols="100" rows="8" maxlength="10000" required></textarea>
+              </div>
+              <input type="hidden" name="current-id" id="current-id" value="">
+              <input type="submit" value="Post a Comment">
+            </form>
           </div>
-          <h2>Leave a Reply</h2>
-          <form action="/comment" method="POST">
-            <div class="input-box">
-              <label for="name">Name</label>
-              <input id="name" type="text" name="name" required>
-            </div>
-            <div class="input-box">
-              <label for="feedback">Comment</label>
-              <textarea id="feedback" name="text-input" cols="100" rows="8" maxlength="10000" required></textarea>
-            </div>
-            <input type="hidden" name="current-id" id="current-id" value="">
-            <input type="submit" value="Post a Comment">
-          </form>
-         <form class="write-post" action="/post" method="POST">
+         <form id="write-post" action="/post" method="POST">
+          <h2 id="title-container">Write a Post</h2>
           <div class="input-box">
             <label for="title">Title</label>
             <input type="text" id="title" name="title">

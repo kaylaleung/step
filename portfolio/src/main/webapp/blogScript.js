@@ -1,19 +1,23 @@
+const role = new URL(document.URL).searchParams.get('user');
+const id = new URL(document.URL).searchParams.get('id');
+
 window.addEventListener('DOMContentLoaded', (event) => {
-  if (tagStr !== "admin") {
-    getURL();
+  const user = document.getElementById('see-post');
+  const admin = document.getElementById('write-post');
+  if (role !== "admin" && id !== null) {
+    getID();
     getPost();
     getComments();
+    user.style.display = 'block';
   }
   else {
-    setAdmin();
+    setAdmin(admin);
   }
 });
 
-const id = new URL(document.URL).searchParams.get('id');
-
-function getURL() {
-    const urlElement = document.getElementById('current-id');
-    urlElement.value = id;
+function getID() {
+    const idElement = document.getElementById('current-id');
+    idElement.value = id;
 }
 
 function getPost() {
@@ -60,14 +64,11 @@ function createCommentElement(comment) {
   return commentElement;
 }
 
-function setAdmin() {
-  const admin = document.getElementById('writePost');
-  const user = document.getElementById('seePost');
-  user.style.display = 'none';
-  admin.style.display = 'block';
+function setAdmin(admin) {
   fetch('/auth').then(response => response.json()).then((log) => {  
     if ("" === log.logoutUrl || log.email !== "Kaylamyhome@gmail.com") {
       admin.innerHTML = '<h1> Not Authorized </h1>';
     }
   });
+  admin.style.display = 'block';
 }
