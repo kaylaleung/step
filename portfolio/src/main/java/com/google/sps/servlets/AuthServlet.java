@@ -30,23 +30,22 @@ public class AuthServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json");
-
+    Profile user;
     UserService userService = UserServiceFactory.getUserService();
+
     if (userService.isUserLoggedIn()) {
       String userEmail = userService.getCurrentUser().getEmail();
       String urlToRedirectToAfterUserLogsOut = "/";
       String logoutUrl = userService.createLogoutURL(urlToRedirectToAfterUserLogsOut);
-      Profile user = new Profile(userEmail, logoutUrl, "");
-      String json = convertToJson(user);
-      response.getWriter().println(json);
+      user = new Profile(userEmail, logoutUrl, "");
     } 
     else {
       String urlToRedirectToAfterUserLogsIn = "/";
       String loginUrl = userService.createLoginURL(urlToRedirectToAfterUserLogsIn);
-      Profile user = new Profile("", "", loginUrl);
-      String json = convertToJson(user);
-      response.getWriter().println(json);
+      user = new Profile("", "", loginUrl);
     }
+    String json = convertToJson(user);
+    response.getWriter().println(json);
   }
 
   private String convertToJson(Profile user) {
