@@ -14,10 +14,48 @@
 
 package com.google.sps;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 public final class FindMeetingQuery {
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-    throw new UnsupportedOperationException("TODO: Implement this method.");
+    Collection<TimeRange> avaliableTimes = new ArrayList<>();
+
+    /* If the requested time span is longer than a whole day, return no avaliable meeting times */
+    if (request.getDuration() > TimeRange.WHOLE_DAY.duration()) {
+      return avaliableTimes;
+    }
+
+    int blockStart = TimeRange.START_OF_DAY;
+    Collection<String> requestAtten = request.getAttendees();
+
+    for (Event event : events) { 
+
+      /* Check if there are attendees in the event that are also requested attendees */
+      Collection<String> eventAtten = event.getAttendees();
+      boolean timeConflictFound = !Collections.disjoint(eventAtten, requestAtten);
+
+      if (timeConflictFound) {
+
+        /* If time conflict found, add avaliable time block up until the start of the event */
+        int blockEnd = event.getWhen().start();
+        if (blockEnd - blockStart >= request.getDuration()) {
+          avaliableTimes.add(TimeRange.fromStartEnd(blockStart, blockEnd, false));
+        }
+
+        /* If avaliable start time is before the end of the conflict time block, 
+           set new avaliable time to after the conflict event is finished. */
+        if (blockStart < event.getWhen().end()) {
+          blockStart = event.getWhen().end();
+        }
+      }
+    }
+
+    /* After all events considered, add the entire rest of the day as also avaliable */
+    if (blockStart < TimeRange.END_OF_DAY) {
+      avaliableTimes.add(TimeRange.fromStartEnd(blockStart, TimeRange.END_OF_DAY, true));
+    }
+    return avaliableTimes;
   }
 }
