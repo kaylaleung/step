@@ -60,9 +60,7 @@
             <h2 id="title-container">Blog Title</h2>
             <div id="post-container"></div>
             <h2>All Comments</h2>
-            <div id="comment-container">
-              <ul id="comment-list"></ul>
-            </div>
+            <ul id="comment-list"></ul>
             <h2>Leave a Reply</h2>
             <form action="/comment" method="POST">
               <div class="input-box">
@@ -78,19 +76,19 @@
             </form>
           </div>
          <form id="write-post" action="/post" method="POST">
-          <h2 id="title-container">Write a Post</h2>
-          <div class="input-box">
-            <label for="title">Title</label>
-            <input type="text" id="title" name="title">
-          </div>
-          <div class="input-box">
-            <label for="category">Category</label>
-            <input type="text" id="category" name="category">
-          </div>
-          <div class="input-box">
-            <label for="post">Write Blog Post</label>
-            <textarea id="post" name="blog-input" cols ="100" rows="8"></textarea>
-          </div>
+            <h2 id="title-container">Write a Post</h2>
+            <div class="input-box">
+              <label for="title">Title</label>
+              <input type="text" id="title" name="title">
+            </div>
+            <div class="input-box">
+              <label for="category">Category</label>
+              <input type="text" id="category" name="category">
+            </div>
+            <div class="input-box">
+              <label for="post">Write Blog Post</label>
+              <textarea id="post" name="blog-input" cols ="100" rows="8"></textarea>
+            </div>
           <input type="submit" value="Submit Blog Post">
         </form>
         </div> 

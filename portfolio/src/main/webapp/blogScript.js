@@ -1,13 +1,14 @@
-const role = new URL(document.URL).searchParams.get('user');
-const id = new URL(document.URL).searchParams.get('id');
 
 window.addEventListener('DOMContentLoaded', (event) => {
   const user = document.getElementById('see-post');
   const admin = document.getElementById('write-post');
+  const role = new URL(document.URL).searchParams.get('user');
+  const id = new URL(document.URL).searchParams.get('id');
+
   if (role !== "admin" && id !== null) {
-    getID();
-    getPost();
-    getComments();
+    getID(id);
+    getPost(id);
+    getComments(id);
     user.style.display = 'block';
   }
   else {
@@ -15,12 +16,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
   }
 });
 
-function getID() {
+function getID(id) {
     const idElement = document.getElementById('current-id');
     idElement.value = id;
 }
 
-function getPost() {
+function getPost(id) {
   fetch('/post?id=' + id).then(response => response.json()).then((post) => {  
     const postElement = document.getElementById('post-container');
     const titleElement = document.getElementById('title-container');
@@ -31,7 +32,7 @@ function getPost() {
   });
 }
 
-function getComments() {
+function getComments(id) {
   fetch('/comment?id=' + id).then(response => response.json()).then((comments) => {
     const commentListElement = document.getElementById('comment-list');
     for (comment of comments) {
@@ -66,7 +67,7 @@ function createCommentElement(comment) {
 
 function setAdmin(admin) {
   fetch('/auth').then(response => response.json()).then((log) => {  
-    if ("" === log.logoutUrl || log.email !== "Kaylamyhome@gmail.com") {
+    if (log.logoutUrl === '' || log.email !== 'Kaylamyhome@gmail.com') {
       admin.innerHTML = '<h1> Not Authorized </h1>';
     }
   });
