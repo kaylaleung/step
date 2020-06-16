@@ -444,3 +444,8 @@ select {
   appearance: none;
   cursor: pointer;
 }
+
+#map {
+  height: 250px;
+  width: 100%;
+}

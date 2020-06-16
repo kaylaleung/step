@@ -56,6 +56,15 @@ input[type=submit] {
   line-height: 25px;
 }
 
-.write-post {
+#write-post, #see-post {
   display: none;
+}
+
+input[type=text], textarea {
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }

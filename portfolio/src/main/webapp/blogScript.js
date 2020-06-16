@@ -1,17 +1,27 @@
+
 window.addEventListener('DOMContentLoaded', (event) => {
-    getURL();
-    getPost();
-    getComments();
+  const user = document.getElementById('see-post');
+  const admin = document.getElementById('write-post');
+  const role = new URL(document.URL).searchParams.get('user');
+  const id = new URL(document.URL).searchParams.get('id');
+
+  if (role !== "admin" && id !== null) {
+    getID(id);
+    getPost(id);
+    getComments(id);
+    user.style.display = 'block';
+  }
+  else {
+    setAdmin(admin);
+  }
 });
 
-const id = new URL(document.URL).searchParams.get('id');
-
-function getURL() {
-    const urlElement = document.getElementById('current-id');
-    urlElement.value = id;
+function getID(id) {
+    const idElement = document.getElementById('current-id');
+    idElement.value = id;
 }
 
-function getPost() {
+function getPost(id) {
   fetch('/post?id=' + id).then(response => response.json()).then((post) => {  
     const postElement = document.getElementById('post-container');
     const titleElement = document.getElementById('title-container');
@@ -22,7 +32,7 @@ function getPost() {
   });
 }
 
-function getComments() {
+function getComments(id) {
   fetch('/comment?id=' + id).then(response => response.json()).then((comments) => {
     const commentListElement = document.getElementById('comment-list');
     for (comment of comments) {
@@ -53,4 +63,13 @@ function createCommentElement(comment) {
   commentElement.appendChild(textElement);
 
   return commentElement;
+}
+
+function setAdmin(admin) {
+  fetch('/auth').then(response => response.json()).then((log) => {  
+    if (log.logoutUrl === '' || log.email !== 'Kaylamyhome@gmail.com') {
+      admin.innerHTML = '<h1> Not Authorized </h1>';
+    }
+  });
+  admin.style.display = 'block';
 }
