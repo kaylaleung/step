@@ -43,10 +43,10 @@ public final class FindMeetingQuery {
       int eventStart = event.getWhen().start();
       int eventEnd = event.getWhen().end();
 
+      /* If no optional attendee conflict and event length long enough, include optional attendee */
       if (!timeConflictFoundOpt && eventStart - blockStartOpt >= request.getDuration()) {
         optionalIncluded = true;
       }
-
       else if (timeConflictFoundOpt) {
         blockStartOpt = eventEnd;
       }
@@ -57,10 +57,7 @@ public final class FindMeetingQuery {
 
       if (timeConflictFound) {
         /* If time conflict found, add avaliable time block up until the start of the event */
-        int blockEnd = eventStart;
-        if (blockEnd - blockStart >= request.getDuration()) {
-          avaliableTimes.add(TimeRange.fromStartEnd(blockStart, blockEnd, false));
-        }
+        avaliableTimes = checkConflict(avaliableTimes, request, blockStart, eventStart);
 
         /* If avaliable start time is before the end of the conflict time block, 
            set new avaliable time to after the conflict event is finished. */
@@ -70,16 +67,18 @@ public final class FindMeetingQuery {
       }
     }
     /* After all events considered, add the entire rest of the day as also avaliable */
-    if (blockStart < TimeRange.END_OF_DAY) {
-      avaliableTimes.add(TimeRange.fromStartEnd(blockStart, TimeRange.END_OF_DAY, true));
-    }
+    avaliableTimes = checkEndOfDay(avaliableTimes, blockStart);
+
+    /* Is there are no avaliable times returned, but there are non 
+       optional requested attendees, check again for non optional 
+       attendee avaliability */
     if (avaliableTimes.isEmpty() && !request.getAttendees().isEmpty()) {
       avaliableTimes = queryAvailOnly(events, request);
     }
     return avaliableTimes;
   }
 
-  public Collection<TimeRange> queryAvailOnly(Collection<Event> events, MeetingRequest request) {
+  private Collection<TimeRange> queryAvailOnly(Collection<Event> events, MeetingRequest request) {
     Collection<TimeRange> avaliableTimes = new ArrayList<>();
     if (request.getDuration() > TimeRange.WHOLE_DAY.duration()) {
       return avaliableTimes;
@@ -92,17 +91,27 @@ public final class FindMeetingQuery {
       int eventEnd = event.getWhen().end();
       boolean timeConflictFound = !Collections.disjoint(eventAtten, requestAtten);
       if (timeConflictFound) {
-        int blockEnd = eventStart;
-        if (blockEnd - blockStart >= request.getDuration()) {
-          avaliableTimes.add(TimeRange.fromStartEnd(blockStart, blockEnd, false));
-        }
+        avaliableTimes = checkConflict(avaliableTimes, request, blockStart, eventStart);
         if (blockStart < eventEnd) {
           blockStart = eventEnd;
         }
       }
     }
+    avaliableTimes = checkEndOfDay(avaliableTimes, blockStart);
+    return avaliableTimes;
+  }
+
+  private Collection<TimeRange> checkEndOfDay(Collection<TimeRange> avaliableTimes, int blockStart) {
     if (blockStart < TimeRange.END_OF_DAY) {
       avaliableTimes.add(TimeRange.fromStartEnd(blockStart, TimeRange.END_OF_DAY, true));
+    }
+    return avaliableTimes;
+  }
+  
+  private Collection<TimeRange> checkConflict(Collection<TimeRange> avaliableTimes,  MeetingRequest request, int blockStart, int eventStart) {
+    int blockEnd = eventStart;
+    if (blockEnd - blockStart >= request.getDuration()) {
+      avaliableTimes.add(TimeRange.fromStartEnd(blockStart, blockEnd, false));
     }
     return avaliableTimes;
   }
