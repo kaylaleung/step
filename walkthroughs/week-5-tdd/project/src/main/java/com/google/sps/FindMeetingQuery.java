@@ -24,7 +24,7 @@ public final class FindMeetingQuery {
 
     /* If the requested time span is longer than a whole day, return no available meeting times */
     if (request.getDuration() > TimeRange.WHOLE_DAY.duration()) {
-      return available;
+      return availableTimes;
     }
 
     int blockStart = TimeRange.START_OF_DAY;
@@ -107,7 +107,7 @@ public final class FindMeetingQuery {
   private Collection<TimeRange> checkEndOfDay(Collection<TimeRange> availableTimes, int blockStart) {
     /* After all events have been considered, add time block from last event till end of day */
     if (blockStart < TimeRange.END_OF_DAY) {
-      availableeTimes.add(TimeRange.fromStartEnd(blockStart, TimeRange.END_OF_DAY, true));
+      availableTimes.add(TimeRange.fromStartEnd(blockStart, TimeRange.END_OF_DAY, true));
     }
     return availableTimes;
   }
