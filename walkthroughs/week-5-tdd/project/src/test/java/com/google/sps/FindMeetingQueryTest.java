@@ -340,7 +340,7 @@ public final class FindMeetingQueryTest {
     // The optional attendee should be ignored since their schedule would result in a time
     // slot smaller than the requested time.
     //
-    // Events  : |--A--|-C-| |----A----|
+    // Events  : |--A--|-B-| |----A----|
     // Day     : |---------------------|
     // Options :       |-----|
 
@@ -369,7 +369,7 @@ public final class FindMeetingQueryTest {
     //
     // Events  : |--A--|     |--B--|
     // Day     : |---------------------|
-    // Options :       |-----|
+    // Options :       |-----|     |---|
 
     Collection<Event> events = Arrays.asList(
         new Event("Event 1", TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TIME_0830AM, false),

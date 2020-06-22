@@ -17,7 +17,9 @@ package com.google.sps;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-/* Implementation requires that Collection of Events are all sorted in order of meeting start time */
+
+/* Implementation requires that Collection of Events are all sorted in order of
+   meeting start time */
 public final class FindMeetingQuery {
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
     Collection<TimeRange> availableTimes = new ArrayList<>();
@@ -32,7 +34,8 @@ public final class FindMeetingQuery {
     Collection<String> requestAtten = request.getAttendees();
     Collection<String> optionalAtten = request.getOptionalAttendees();
 
-    /* If there are only optional attendees requested, default set all optional attendeeds to be included */
+    /* If there are only optional attendees requested, default set all optional attendees to be 
+       included */
     boolean optionalIncluded = request.getAttendees().isEmpty();
     
     for (Event event : events) { 
@@ -70,7 +73,7 @@ public final class FindMeetingQuery {
     /* If there are no available times returned, but there are non 
        optional requested attendees, check again for non optional 
        attendee avaliability */
-    if (availableTimes.isEmpty() && !request.getAttendees().isEmpty()) {
+    if (availableTimes.isEmpty() && !requestAtten.isEmpty()) {
       availableTimes = queryRequiredOnly(events, request);
     }
     return availableTimes;
@@ -114,7 +117,8 @@ public final class FindMeetingQuery {
   
   private Collection<TimeRange> checkConflict(Collection<TimeRange> availableTimes,  MeetingRequest request, int blockStart, int eventStart) {
     int blockEnd = eventStart;
-    /* If there is no conflict, and the block meets the duration requirements, add to availableTimes */
+    /* If there is no conflict, and the block meets the duration requirements, add to 
+       availableTimes */
     if (blockEnd - blockStart >= request.getDuration()) {
       availableTimes.add(TimeRange.fromStartEnd(blockStart, blockEnd, false));
     }
