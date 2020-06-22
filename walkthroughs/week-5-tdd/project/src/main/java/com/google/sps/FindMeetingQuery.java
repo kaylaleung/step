@@ -60,7 +60,7 @@ public final class FindMeetingQuery {
 
       if (timeConflictFound) {
         /* If time conflict found, add available time block up until the start of the event */
-        checkConflict(availableTimes, request, blockStart, eventStart);
+        addIfDurationFits(availableTimes, request, blockStart, eventStart);
         /* If available start time is before the end of the conflict time block, 
            set new available time to after the conflict event is finished. */
         if (blockStart < eventEnd) {
@@ -69,7 +69,7 @@ public final class FindMeetingQuery {
       }
     }
     /* After all events considered, add the entire rest of the day as also available */
-    checkEndOfDay(availableTimes, blockStart);
+    addTillEndOfDay(availableTimes, blockStart);
     /* If there are no available times returned, but there are non 
        optional requested attendees, check again for non optional 
        attendee avaliability */
@@ -95,7 +95,7 @@ public final class FindMeetingQuery {
       boolean timeConflictFound = !Collections.disjoint(eventAtten, requestAtten);
       /* If time conflict found, add available time block up until the start of the event */
       if (timeConflictFound) {
-        checkConflict(availableTimes, request, blockStart, eventStart);
+        addIfDurationFits(availableTimes, request, blockStart, eventStart);
         /* If available start time is before the end of the conflict time block, 
            set new available time to after the conflict event is finished. */
         if (blockStart < eventEnd) {
@@ -103,20 +103,20 @@ public final class FindMeetingQuery {
         }
       }
     }
-    checkEndOfDay(availableTimes, blockStart);
+    addTillEndOfDay(availableTimes, blockStart);
   }
 
-  private void checkEndOfDay(Collection<TimeRange> availableTimes, int blockStart) {
-    /* After all events have been considered, add time block from last event till end of day */
+  /* After all events have been considered, add the entire time range from the last event time till 
+     the end of day if the last event doesn't extend past the end of day */
+  private void addTillEndOfDay(Collection<TimeRange> availableTimes, int blockStart) {
     if (blockStart < TimeRange.END_OF_DAY) {
       availableTimes.add(TimeRange.fromStartEnd(blockStart, TimeRange.END_OF_DAY, true));
     }
   }
-  
-  private void checkConflict(Collection<TimeRange> availableTimes,  MeetingRequest request, int blockStart, int eventStart) {
-    int blockEnd = eventStart;
-    /* If there is no conflict, and the block meets the duration requirements, add to 
-       availableTimes */
+
+  /* If block start time and block end time for the proposed meeting time range satisfies the 
+     requested meeting block duration, then add time range to collection of available times */
+  private void addIfDurationFits(Collection<TimeRange> availableTimes,  MeetingRequest request, int blockStart, int blockEnd) {
     if (blockEnd - blockStart >= request.getDuration()) {
       availableTimes.add(TimeRange.fromStartEnd(blockStart, blockEnd, false));
     }
