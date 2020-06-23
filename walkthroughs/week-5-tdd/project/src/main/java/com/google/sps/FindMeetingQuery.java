@@ -21,7 +21,7 @@ import java.util.Collections;
 /* Implementation requires that Collection of Events are all sorted in order of
    meeting start time */
 public final class FindMeetingQuery {
-  public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
+    public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
     Collection<TimeRange> availableTimes = new ArrayList<>();
 
     /* If the requested time span is longer than a whole day, return no available meeting times */
