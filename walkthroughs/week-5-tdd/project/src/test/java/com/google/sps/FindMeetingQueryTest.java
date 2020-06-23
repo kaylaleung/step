@@ -394,7 +394,7 @@ public final class FindMeetingQueryTest {
     // Have one person, but make it so that there is not enough room at any point in the day to
     // have the meeting.
     //
-    // Events  : |--A-----| |-----B----|
+    // Events  : |----A----| |----B----|
     // Day     : |---------------------|
     // Options :
 
@@ -410,6 +410,31 @@ public final class FindMeetingQueryTest {
 
     Collection<TimeRange> actual = query.query(events, request);
     Collection<TimeRange> expected = Arrays.asList();
+
+    Assert.assertEquals(expected, actual);
+  }
+
+  @Test
+  public void freeAllDay() {
+    // Have a required attendee A with no meetings. Use an optional attendee to
+    // exploit a bug.
+    //
+    // Events  : |--B--|      |--B--|
+    // Day     : |------------------|
+    // Options :        |--A--|
+    
+    Collection<Event> events = Arrays.asList(
+        new Event("Event 1", TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TIME_0900AM, false),
+            Arrays.asList(PERSON_B)),
+        new Event("Event 2", TimeRange.fromStartEnd(TIME_0930AM, TimeRange.END_OF_DAY, false),
+            Arrays.asList(PERSON_B)));
+    
+    MeetingRequest request = new MeetingRequest(Arrays.asList(PERSON_A), DURATION_30_MINUTES);
+    request.addOptionalAttendee(PERSON_B);
+
+    Collection<TimeRange> actual = query.query(events, request);
+    Collection<TimeRange> expected =
+        Arrays.asList(TimeRange.fromStartEnd(TIME_0900AM, TIME_0930AM, false));
 
     Assert.assertEquals(expected, actual);
   }
